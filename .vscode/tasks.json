@@ -6,14 +6,21 @@
         {
             "label": "testbuild",
             "type": "shell",
-            "command": "g++ -g main.cpp random.cpp",
-            "args": [
-                 "-o", "main.o"
-            ],
+            "command": "g++ -g main.cpp -Wc++11-extensions -o main.o",
             "group": {
                 "kind": "build",
                 "isDefault": true
             }
+        },
+        {
+            "label": "playground",
+            "type": "shell",
+            "command": "g++ -g test.cpp -Wc++11-extensions -o test.o",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": []
         }
     ]
 }
