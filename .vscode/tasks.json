@@ -6,16 +6,17 @@
         {
             "label": "testbuild",
             "type": "shell",
-            "command": "g++ -g main.cpp -Wc++11-extensions -o main.o",
+            "command": "g++ -std=c++11 -g main.cpp getpars.cpp -Wc++11-extensions -o main.o",
             "group": {
                 "kind": "build",
                 "isDefault": true
-            }
+            },
+            "problemMatcher": []
         },
         {
             "label": "playground",
             "type": "shell",
-            "command": "g++ -g test.cpp -Wc++11-extensions -o test.o",
+            "command": "g++ -std=c++11 -g test.cpp -Wc++11-extensions -o test.o",
             "group": {
                 "kind": "build",
                 "isDefault": true
