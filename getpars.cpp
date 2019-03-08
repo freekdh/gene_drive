@@ -24,55 +24,71 @@ std::vector<std::vector<std::string> > parseCSV(const std::string &filename){
     return parsedCsv;
 };
 
-std::vector<std::vector<double> > get_fitnesspars(const std::string &name){
+std::vector<double> get_fitnesspars(const std::string &name){
     std::vector<std::vector<std::string> > data = parseCSV(name);
     const int nrows = data.size();
-    const int ncols = data[0].size();
-    std::vector<std::vector<double> > out(nrows, std::vector<double>(ncols,0));
+    std::vector<double> out(nrows, 0);
     for(int i = 0; i < nrows; ++i){
-        for(int j = 0; j < ncols; ++j){
-            out[i][j] = std::stod(data[i][j]);
-        }
+            out[i] = std::stod(data[i][0]);
     }
     return out;
 }
 
-std::vector<std::vector<double> >get_mutationpars(const std::string &name){
+std::vector<std::vector<std::string> > get_genotypes(const std::string &name){
+    return parseCSV(name);
+}
+
+std::vector<std::vector<int> > get_mutationpars(const std::string &name){
     std::vector<std::vector<std::string> > data = parseCSV(name);
     const int nrows = data.size();
-    const int ncols = data[0].size();
-    std::vector<std::vector<double> > out(nrows, std::vector<double>(ncols,0));
+    std::vector<std::vector<int> > out(nrows);
     for(int i = 0; i < nrows; ++i){
+        const int ncols = data[i].size();
+        std::vector<int> temp(ncols);
         for(int j = 0; j < ncols; ++j){
-            out[i][j] = std::stod(data[i][j]);
+            temp[j] = std::stoi(data[i][j]);
         }
+        out[i]=temp;
     }
     return out;
 }
 
-std::vector<std::vector<double> > get_drivepars(const std::string &name){
+std::vector<std::vector<int > > get_drivepars(const std::string &name){
     std::vector<std::vector<std::string> > data = parseCSV(name);
     const int nrows = data.size();
-    const int ncols = data[0].size();
-    std::vector<std::vector<double> > out(nrows, std::vector<double>(ncols,0));
+    std::vector<std::vector<int> > out(nrows);
     for(int i = 0; i < nrows; ++i){
+        const int ncols = data[i].size();
+        std::vector<int> temp(ncols);
         for(int j = 0; j < ncols; ++j){
-            out[i][j] = std::stod(data[i][j]);
+            temp[j] = std::stoi(data[i][j]);
         }
+        out[i]=temp;
     }
     return out;
 }
 
-parameters get_initial(const std::string &filename, const std::vector<std::string> &variablenames){
-    std::vector<std::vector<std::string> > data = parseCSV(filename);
-    parameters pars;
-    for(int i = 0; i< data.size(); ++i){
-        for(int j = 0; j< variablenames.size(); ++j){
-            if(data[i][0]==variablenames[j]){
-                
-            }
+std::vector<std::vector<int> > get_recombinationpars(const std::string &name){
+    std::vector<std::vector<std::string> > data = parseCSV(name);
+    const int nrows = data.size();
+    std::vector<std::vector<int> > out(nrows);
+    for(int i = 0; i < nrows; ++i){
+        const int ncols = data[i].size();
+        std::vector<int> temp(ncols);
+        for(int j = 0; j < ncols; ++j){
+            temp[j] = std::stoi(data[i][j]);
         }
+        out[i]=temp;
     }
-    return pars;
+    return out;
 }
 
+std::vector<int> get_initalindividuals(const std::string &name){
+    std::vector<std::vector<std::string> > data = parseCSV(name);
+    const int nrows = data.size();
+    std::vector<int> out(nrows, 0);
+    for(int i = 0; i < nrows; ++i){
+            out[i] = std::stoi(data[i][0]);
+    }
+    return out;
+}

@@ -11,9 +11,10 @@ struct parameters{
 };
 
 std::vector<std::vector<std::string> > parseCSV(const std::string &filename);
-std::vector<std::vector<double> > get_fitnesspars(const std::string &name);
-std::vector<std::vector<double> > get_mutationpars(const std::string &name);
-std::vector<std::vector<double> > get_drivepars(const std::string &name);
-parameters get_initial(const std::string &name);
-
+std::vector<std::vector<std::string> > get_genotypes(const std::string &name);
+std::vector<double> get_fitnesspars(const std::string &name);
+std::vector<std::vector<int> > get_mutationpars(const std::string &name);
+std::vector<std::vector<int > > get_drivepars(const std::string &name);
+std::vector<int> get_initalindividuals(const std::string &name);
+std::vector<std::vector<int> > get_recombinationpars(const std::string &name);
 #endif

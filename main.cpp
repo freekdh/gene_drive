@@ -9,83 +9,44 @@
 #include "utils.h"
 #include "getpars.h"
 #include <assert.h>
-
-/*global variables*/
-std::vector<std::vector<double> > pars_fitness;
-std::vector<std::vector<double> > pars_mutation;
-std::vector<std::vector<double> > pars_drive;
-std::vector<double> recombinationrate;
+#include <fstream>
+#include "Individual.h" 
 
 enum allele_type {variant0, variant1, variant2};
 
-class Individual{
-    public:
-    Individual(Individual &parent1, Individual &parent2){
-        haplotype[0] = parent1.creategamete();
-        haplotype[1] = parent2.creategamete();
-    }
-    Individual operator+(Individual &mate){
-        return Individual(*this, mate);
-    }
+// auto it = std::vector<Individual*>::iterator();
 
-    std::vector<int> creategamete(){
-        std::vector<int> gamete;
-        bool focal = rnd::bernoulli(0.5);
-        for(int i = 0; i < 3; ++i){
-            gamete[i] = haplotype[focal][i];
-            focal = rnd::uniform() <= recombinationrate[i] ?  !focal : focal;
-        }
-        return gamete;
-    }
+// class Population{
+//     public:
+//     Population(const int &n){
+//         for(int i = 0; i < n; ++i){
+//             population.push_back(new Individual(0));
+//         }
+//     }
+//     void in_migration(Individual* migrant){
+//         population.push_back(migrant);
+//     }
 
-    void mutate(){
-        
-    }
-
-    double fitness(){
-        return 1.0;
-    }
-
-    private:
-    std::vector<int> haplotype[2];
-};
-
-auto it = std::vector<Individual*>::iterator();
-
-class Population{
-    public:
-    Population(const int &n){
-        for(int i = 0; i < n; ++i){
-            population.push_back(new Individual(0));
-        }
-    }
-    void in_migration(Individual* migrant){
-        population.push_back(migrant);
-    }
-
-    void next(){
-        for(auto it = population.begin(); it <= population.end(); ++it){
+//     void next(){
+//         for(auto it = population.begin(); it <= population.end(); ++it){
             
-        }
-    }
+//         }
+//     }
 
-    private:
-    std::vector<Individual*> population;
-};
+//     private:
+//     std::vector<Individual*> population;
+// };
 
 /* main */
 int main(int argc, char *argv[]){
-    //hyperparameters
-     pars_fitness = get_fitnesspars("fitness.csv");
-     pars_mutation = get_mutationpars("mutation.csv");
-     pars_drive = get_drivepars("drive.csv");
+    //hyperparameters and initial conditions
+    std::vector<double> Fitness = get_fitnesspars("Fitness.csv");
+    std::vector<std::vector<int > > Mutation = get_mutationpars("Mutation.csv");
+    std::vector<std::vector<int > > Drive = get_drivepars("MeioticDrive.csv");
+    std::vector<std::vector<std::string> > Genotypes = get_genotypes("Genotypes.csv");
+    std::vector<int> initIndividuals = get_initalindividuals("initIndividuals.csv");
+    std::vector<std::vector<int> > Recombination = get_recombinationpars("Recombination.csv");
+    const int nGenotypes = Genotypes.size();
     
-    //initial conditions
-    
-    Individual a(1),b(2);
-    Individual c = a+b;
-
-    Population aa(10);
-    Population bb(10);
     return 0;
 }
