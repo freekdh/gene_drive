@@ -12,8 +12,6 @@
 #include <fstream>
 #include "Individual.h" 
 
-enum allele_type {variant0, variant1, variant2};
-
 // auto it = std::vector<Individual*>::iterator();
 
 // class Population{
@@ -40,13 +38,16 @@ enum allele_type {variant0, variant1, variant2};
 /* main */
 int main(int argc, char *argv[]){
     //hyperparameters and initial conditions
+    const double r = 0.5;
     std::vector<double> Fitness = get_fitnesspars("Fitness.csv");
     std::vector<std::vector<int > > Mutation = get_mutationpars("Mutation.csv");
     std::vector<std::vector<int > > Drive = get_drivepars("MeioticDrive.csv");
     std::vector<std::vector<std::string> > Genotypes = get_genotypes("Genotypes.csv");
     std::vector<int> initIndividuals = get_initalindividuals("initIndividuals.csv");
     std::vector<std::vector<int> > Recombination = get_recombinationpars("Recombination.csv");
-    const int nGenotypes = Genotypes.size();
+    set_RecombDistribution(0.5);
+
     
+
     return 0;
 }
