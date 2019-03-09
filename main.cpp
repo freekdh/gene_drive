@@ -1,7 +1,6 @@
 /* 3 locus 3 allele IBS */
 /* Freek de Haas, UBC */
 
-/* headers */
 #include <bitset>
 #include <iostream>
 #include <vector>
@@ -10,33 +9,12 @@
 #include "getpars.h"
 #include <assert.h>
 #include <fstream>
-#include "Individual.h" 
-
-// auto it = std::vector<Individual*>::iterator();
-
-// class Population{
-//     public:
-//     Population(const int &n){
-//         for(int i = 0; i < n; ++i){
-//             population.push_back(new Individual(0));
-//         }
-//     }
-//     void in_migration(Individual* migrant){
-//         population.push_back(migrant);
-//     }
-
-//     void next(){
-//         for(auto it = population.begin(); it <= population.end(); ++it){
-            
-//         }
-//     }
-
-//     private:
-//     std::vector<Individual*> population;
-// };
+#include "Individual.h"
+#include "Population.h"
 
 /* main */
 int main(int argc, char *argv[]){
+    rnd::set_seed();
     //hyperparameters and initial conditions
     const double r = 0.5;
     std::vector<double> Fitness = get_fitnesspars("Fitness.csv");
@@ -47,7 +25,7 @@ int main(int argc, char *argv[]){
     std::vector<std::vector<int> > Recombination = get_recombinationpars("Recombination.csv");
     set_RecombDistribution(0.5);
 
-    
+    Population initpop(initIndividuals);
 
     return 0;
 }

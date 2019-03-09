@@ -55,6 +55,16 @@
         "tuple": "cpp",
         "type_traits": "cpp",
         "typeinfo": "cpp",
-        "utility": "cpp"
+        "utility": "cpp",
+        "clocale": "cpp",
+        "array": "cpp",
+        "*.tcc": "cpp",
+        "complex": "cpp",
+        "deque": "cpp",
+        "list": "cpp",
+        "unordered_map": "cpp",
+        "cinttypes": "cpp",
+        "typeindex": "cpp",
+        "optional": "cpp"
     }
 }

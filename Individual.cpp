@@ -1,13 +1,14 @@
 #include "Individual.h"
 #include "random.h"
 
-Individual::Individual(const int&genotype):type(genotype){}
+const int ngenotypes = 265;
+rnd::discrete_distribution chooserecombinant(16);
 
-Individual::Individual(Individual &parent1, Individual &parent2, const double &r, std::vector<std::vector<int> > &Recombination){
-     const int type1 = parent1.type;
-     const int type2 = parent2.type;
-     const int index = (type1 - 1)*ngenotypes + type2;
-     Recombination[index][chooserecombinant.sample()]; // assuming recombinationrate = 0.5 -> Make a discrete distribtuion based on r.
+Individual::Individual(const int&genotype){type = genotype; }
+
+Individual::Individual(Individual &parent1, Individual &parent2, std::vector<std::vector<int> > &Recombination){
+     const int index = (parent1.type - 1)*ngenotypes + parent2.type;
+     type = Recombination[index][chooserecombinant.sample()]; // assuming recombinationrate = 0.5 -> Make a discrete distribtuion based on r.
 }
 
 void Individual::mutate(std::vector<std::vector<int > > &mutationlist, const double &m){
@@ -16,3 +17,17 @@ void Individual::mutate(std::vector<std::vector<int > > &mutationlist, const dou
     }
 }
 
+void set_RecombDistribution(const double &r){
+    //Set chooserecombinant distribution based on r. This is due to the structure of Recombination.csv. See Mathematica file.
+    for(int i = 0; i<4; ++i){
+        chooserecombinant[i] = (1-r)*(1-r);
+    }
+    for(int i = 4; i<12; ++i){
+        chooserecombinant[i] = (1-r)*r;
+    }
+    for(int i = 12; i<16; ++i){
+        chooserecombinant[i] = r*r;
+    }
+}
+
+int Individual::return_type() {return type;}
