@@ -26,6 +26,9 @@ int main(int argc, char *argv[]){
     set_RecombDistribution(0.5);
 
     Population initpop(initIndividuals);
-
+    initpop.mutate(Mutation,0.01);
+    initpop.drive(Drive,0.99);
+    initpop.selection(Fitness);
+    initpop.reproduce(Recombination);
     return 0;
 }
