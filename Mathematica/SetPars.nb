@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     51897,       1420]
-NotebookOptionsPosition[     49128,       1317]
-NotebookOutlinePosition[     49476,       1332]
-CellTagsIndexPosition[     49433,       1329]
+NotebookDataLength[     38811,       1081]
+NotebookOptionsPosition[     36476,        991]
+NotebookOutlinePosition[     36862,       1008]
+CellTagsIndexPosition[     36819,       1005]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -29,43 +29,22 @@ Cell[BoxData[
  RowBox[{"SetDirectory", "[", 
   RowBox[{"NotebookDirectory", "[", "]"}], "]"}]], "Input",
  CellChangeTimes->{{3.7608822298887997`*^9, 3.760882238388842*^9}, 
-   3.760882276317058*^9}],
+   3.760882276317058*^9, {3.761177869843499*^9, 3.7611778735858383`*^9}}],
 
-Cell[BoxData["\<\"C:\\\\Users\\\\Freek\\\\Documents\\\\GeneDrive\\\\\
-Mathematica\"\>"], "Output",
+Cell[BoxData["\<\"/Users/dehaas/Documents/GeneDrive/Mathematica\"\>"], \
+"Output",
  CellChangeTimes->{{3.760882232439814*^9, 3.760882238767383*^9}, 
    3.760882277281034*^9, {3.761054588003681*^9, 3.761054594953081*^9}, 
    3.76105464292785*^9, 3.7610547172513027`*^9, 3.761060973290629*^9, 
    3.761061604635687*^9, {3.761063510020117*^9, 3.761063528733262*^9}, 
-   3.761065080307535*^9, 3.76116335209965*^9}]
+   3.761065080307535*^9, {3.7611778905547447`*^9, 3.761177902212057*^9}, 
+   3.76117800564872*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
 
-Cell[BoxData[
- RowBox[{
-  RowBox[{"(*", 
-   RowBox[{"Set", " ", "environmental", " ", "variables"}], "*)"}], 
-  "\[IndentingNewLine]", 
-  RowBox[{
-   RowBox[{
-    RowBox[{"Loci", "=", 
-     RowBox[{"{", 
-      RowBox[{
-       RowBox[{"{", 
-        RowBox[{
-        "\"\<Aw\>\"", ",", "\"\<Am\>\"", ",", "\"\<Ad\>\"", ",", 
-         "\"\<Ar\>\""}], "}"}], ",", 
-       RowBox[{"{", 
-        RowBox[{
-        "\"\<Bw\>\"", ",", "\"\<Bm\>\"", ",", "\"\<Bd\>\"", ",", 
-         "\"\<Br\>\""}], "}"}]}], "}"}]}], ";"}], "\[IndentingNewLine]", 
-   RowBox[{"Gametes", " ", "=", 
-    RowBox[{"Tuples", "[", "Loci", "]"}]}], "\[IndentingNewLine]", 
-   RowBox[{
-    RowBox[{"Genotypes", "=", 
-     RowBox[{"Tuples", "[", 
-      RowBox[{"Gametes", ",", "2"}], "]"}]}], ";"}]}]}]], "Input"],
+Cell[BoxData["Gametes"], "Input",
+ CellChangeTimes->{{3.761179211672224*^9, 3.761179212562896*^9}}],
 
 Cell[BoxData[
  RowBox[{"{", 
@@ -102,24 +81,13 @@ Cell[BoxData[
     RowBox[{"\<\"Ar\"\>", ",", "\<\"Bd\"\>"}], "}"}], ",", 
    RowBox[{"{", 
     RowBox[{"\<\"Ar\"\>", ",", "\<\"Br\"\>"}], "}"}]}], "}"}]], "Output",
- CellChangeTimes->{3.761162462451045*^9, 3.7611633551502934`*^9}]
-}, Open  ]],
-
-Cell[CellGroupData[{
-
-Cell[BoxData[
- RowBox[{"Length", "[", "Gametes", "]"}]], "Input",
- CellChangeTimes->{{3.761164729355878*^9, 3.7611647335969744`*^9}}],
-
-Cell[BoxData["16"], "Output",
- CellChangeTimes->{3.761164733882689*^9}]
+ CellChangeTimes->{3.761179212784984*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
 
 Cell["Initial #Individuals", "Chapter",
- CellChangeTimes->{{3.76106492965309*^9, 3.761064935636223*^9}, 
-   3.761162465132309*^9}],
+ CellChangeTimes->{{3.76106492965309*^9, 3.761064935636223*^9}}],
 
 Cell[CellGroupData[{
 
@@ -135,24 +103,29 @@ Cell[BoxData[{
  RowBox[{
   RowBox[{
    RowBox[{"nGenotypes", "[", 
-    RowBox[{"[", "1", "]"}], "]"}], "=", "100"}], ";", " ", 
+    RowBox[{"[", "1", "]"}], "]"}], "=", "5000"}], ";", " ", 
   RowBox[{"(*", "Wildtype", "*)"}], ";"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{
    RowBox[{"nGenotypes", "[", 
-    RowBox[{"[", "171", "]"}], "]"}], "=", "10"}], 
+    RowBox[{"[", "171", "]"}], "]"}], "=", "500"}], 
   ";"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{"Export", "[", 
    RowBox[{
    "\"\<initIndividuals.csv\>\"", ",", "nGenotypes", ",", "\"\<CSV\>\""}], 
    "]"}], " "}]}], "Input",
- CellChangeTimes->{{3.761064937661005*^9, 3.76106507671609*^9}}],
+ CellChangeTimes->{{3.761064937661005*^9, 3.76106507671609*^9}, {
+   3.761177995406149*^9, 3.761178003123493*^9}, {3.761178561362049*^9, 
+   3.761178561424611*^9}, {3.761178595833783*^9, 3.761178596072258*^9}, 
+   3.7611788561742992`*^9, {3.761178957773728*^9, 3.761178958044772*^9}, {
+   3.761179103165052*^9, 3.761179103363585*^9}}],
 
 Cell[BoxData["\<\"initIndividuals.csv\"\>"], "Output",
  CellChangeTimes->{{3.7610649778547*^9, 3.761065003954735*^9}, {
-   3.761065034243209*^9, 3.761065080393791*^9}, 3.761162468170988*^9, 
-   3.761163357236047*^9}]
+   3.761065034243209*^9, 3.761065080393791*^9}, {3.7611780036646013`*^9, 
+   3.761178005728953*^9}, 3.761178561957778*^9, 3.761178596388495*^9, 
+   3.7611788579247847`*^9, 3.761178958627983*^9, 3.761179103683261*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -162,15 +135,14 @@ Cell[BoxData[
  CellChangeTimes->{{3.761065083110704*^9, 3.761065086484972*^9}}],
 
 Cell[BoxData["256"], "Output",
- CellChangeTimes->{3.7610650868250113`*^9, 3.7611624751303816`*^9, 
-  3.761167589657941*^9}]
+ CellChangeTimes->{3.7610650868250113`*^9, 3.761178005788258*^9}]
 }, Open  ]]
-}, Open  ]],
+}, Closed]],
 
 Cell[CellGroupData[{
 
 Cell["TypeToGametes", "Chapter",
- CellChangeTimes->{{3.7611629945552883`*^9, 3.761163006323269*^9}}],
+ CellChangeTimes->{{3.761171618833152*^9, 3.7611716218725*^9}}],
 
 Cell[CellGroupData[{
 
@@ -183,14 +155,13 @@ Cell[BoxData[{
       RowBox[{"i", ",", "1", ",", 
        RowBox[{"Length", "[", "Genotypes", "]"}]}], "}"}], ",", 
      RowBox[{"{", 
-      RowBox[{"j", ",", "1", ",", "2"}], "}"}]}], "]"}]}], 
-  ";"}], "\[IndentingNewLine]", 
+      RowBox[{"j", ",", "1", ",", "2"}], "}"}]}], "]"}]}], ";"}], "\n", 
  RowBox[{"For", "[", 
   RowBox[{
-   RowBox[{"i", "=", "1"}], ",", " ", 
+   RowBox[{"i", "=", "1"}], ",", 
    RowBox[{"i", "\[LessEqual]", 
     RowBox[{"Length", "[", "Genotypes", "]"}]}], ",", 
-   RowBox[{"++", "i"}], ",", "\[IndentingNewLine]", 
+   RowBox[{"++", "i"}], ",", 
    RowBox[{
     RowBox[{
      RowBox[{
@@ -223,21 +194,17 @@ Cell[BoxData[{
           RowBox[{"[", "2", "]"}], "]"}]}], "]"}], "[", 
        RowBox[{"[", 
         RowBox[{"1", ",", "1"}], "]"}], "]"}], "-", "1"}]}], ";"}]}], 
-  "\[IndentingNewLine]", "]"}], "\[IndentingNewLine]", 
- RowBox[{
-  RowBox[{"Export", "[", 
-   RowBox[{
-   "\"\<typetogametes.csv\>\"", ",", "typetogametes", ",", "\"\<CSV\>\""}], 
-   "]"}], " "}]}], "Input",
- CellChangeTimes->{{3.761163010288869*^9, 3.7611630322958837`*^9}, {
-  3.7611631101492863`*^9, 3.7611633439741135`*^9}, {3.761171248415761*^9, 
-  3.76117124976733*^9}}],
+  "]"}], "\n", 
+ RowBox[{"Export", "[", 
+  RowBox[{
+  "\"\<typetogametes.csv\>\"", ",", "typetogametes", ",", "\"\<CSV\>\""}], 
+  "]"}]}], "Input",
+ CellChangeTimes->{{3.761171622623968*^9, 3.761171622625272*^9}}],
 
 Cell[BoxData["\<\"typetogametes.csv\"\>"], "Output",
- CellChangeTimes->{{3.761163345080161*^9, 3.7611633747511024`*^9}, 
-   3.7611712501602397`*^9}]
+ CellChangeTimes->{3.7611716245771513`*^9, 3.7611780058503027`*^9}]
 }, Open  ]]
-}, Open  ]],
+}, Closed]],
 
 Cell[CellGroupData[{
 
@@ -314,15 +281,17 @@ Cell[BoxData["\<\"Genotypes.csv\"\>"], "Output",
  CellChangeTimes->{{3.761054577142992*^9, 3.761054595348915*^9}, {
    3.761054635227049*^9, 3.761054643213476*^9}, 3.761054717331396*^9, 
    3.761054824283029*^9, 3.761060973432377*^9, 3.761061604744845*^9, {
-   3.761063510130517*^9, 3.7610635288447657`*^9}, 3.761065080482009*^9}],
+   3.761063510130517*^9, 3.7610635288447657`*^9}, 3.761065080482009*^9, 
+   3.7611780059138393`*^9}],
 
 Cell[BoxData["256"], "Output",
  CellChangeTimes->{{3.761054577142992*^9, 3.761054595348915*^9}, {
    3.761054635227049*^9, 3.761054643213476*^9}, 3.761054717331396*^9, 
    3.761054824283029*^9, 3.761060973432377*^9, 3.761061604744845*^9, {
-   3.761063510130517*^9, 3.7610635288447657`*^9}, 3.761065080494854*^9}]
+   3.761063510130517*^9, 3.7610635288447657`*^9}, 3.761065080482009*^9, 
+   3.7611780059316673`*^9}]
 }, Open  ]]
-}, Open  ]],
+}, Closed]],
 
 Cell[CellGroupData[{
 
@@ -408,7 +377,7 @@ Cell[BoxData["\<\"Fitness.csv\"\>"], "Output",
    3.760882279487701*^9, 3.7608830824797497`*^9, 3.7608831988316393`*^9, 
    3.7610545955506363`*^9, 3.761054643393989*^9, 3.761054717402038*^9, 
    3.761060973520297*^9, 3.761061604830141*^9, {3.761063510211478*^9, 
-   3.761063528935499*^9}, 3.761065080570085*^9}]
+   3.761063528935499*^9}, 3.761065080570085*^9, 3.7611780060009327`*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -420,7 +389,8 @@ Cell[BoxData[
 Cell[BoxData["256"], "Output",
  CellChangeTimes->{
   3.761054815307104*^9, 3.7610609736068287`*^9, 3.7610616049130287`*^9, {
-   3.761063510295526*^9, 3.761063529019005*^9}, 3.76106508063667*^9}]
+   3.761063510295526*^9, 3.761063529019005*^9}, 3.76106508063667*^9, 
+   3.7611780060663357`*^9}]
 }, Open  ]]
 }, Closed]],
 
@@ -470,21 +440,22 @@ Cell[BoxData[{
          RowBox[{"[", "i", "]"}], "]"}], ",", 
         RowBox[{"ToString", "[", 
          RowBox[{
-          RowBox[{"Position", "[", 
-           RowBox[{"Genotypes", ",", 
-            RowBox[{"ReplacePart", "[", 
-             RowBox[{
-              RowBox[{"Genotypes", "[", 
-               RowBox[{"[", "i", "]"}], "]"}], ",", 
+          RowBox[{
+           RowBox[{"Position", "[", 
+            RowBox[{"Genotypes", ",", 
+             RowBox[{"ReplacePart", "[", 
               RowBox[{
-               RowBox[{"Position", "[", 
-                RowBox[{
-                 RowBox[{"Genotypes", "[", 
-                  RowBox[{"[", "i", "]"}], "]"}], ",", "\"\<Aw\>\""}], "]"}], 
-               "\[Rule]", "\"\<Ad\>\""}]}], "]"}]}], "]"}], "[", 
-          RowBox[{"[", 
-           RowBox[{"1", ",", "1"}], "]"}], "]"}], "]"}]}], "]"}]}], "]"}], 
-    ";", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+               RowBox[{"Genotypes", "[", 
+                RowBox[{"[", "i", "]"}], "]"}], ",", 
+               RowBox[{
+                RowBox[{"Position", "[", 
+                 RowBox[{
+                  RowBox[{"Genotypes", "[", 
+                   RowBox[{"[", "i", "]"}], "]"}], ",", "\"\<Aw\>\""}], "]"}],
+                 "\[Rule]", "\"\<Ad\>\""}]}], "]"}]}], "]"}], "[", 
+           RowBox[{"[", 
+            RowBox[{"1", ",", "1"}], "]"}], "]"}], "-", "1"}], "]"}]}], 
+       "]"}]}], "]"}], ";", "\[IndentingNewLine]", "\[IndentingNewLine]", 
     RowBox[{"If", "[", 
      RowBox[{
       RowBox[{
@@ -506,21 +477,23 @@ Cell[BoxData[{
          RowBox[{"[", "i", "]"}], "]"}], ",", 
         RowBox[{"ToString", "[", 
          RowBox[{
-          RowBox[{"Position", "[", 
-           RowBox[{"Genotypes", ",", 
-            RowBox[{"ReplacePart", "[", 
-             RowBox[{
-              RowBox[{"Genotypes", "[", 
-               RowBox[{"[", "i", "]"}], "]"}], ",", 
+          RowBox[{
+           RowBox[{"Position", "[", 
+            RowBox[{"Genotypes", ",", 
+             RowBox[{"ReplacePart", "[", 
               RowBox[{
-               RowBox[{"Position", "[", 
-                RowBox[{
-                 RowBox[{"Genotypes", "[", 
-                  RowBox[{"[", "i", "]"}], "]"}], ",", "\"\<Bw\>\""}], "]"}], 
-               "\[Rule]", "\"\<Bd\>\""}]}], "]"}]}], "]"}], "[", 
-          RowBox[{"[", 
-           RowBox[{"1", ",", "1"}], "]"}], "]"}], "]"}]}], "]"}]}], "]"}], 
-    ";"}]}], "\[IndentingNewLine]", "]"}], "\[IndentingNewLine]", 
+               RowBox[{"Genotypes", "[", 
+                RowBox[{"[", "i", "]"}], "]"}], ",", 
+               RowBox[{
+                RowBox[{"Position", "[", 
+                 RowBox[{
+                  RowBox[{"Genotypes", "[", 
+                   RowBox[{"[", "i", "]"}], "]"}], ",", "\"\<Bw\>\""}], "]"}],
+                 "\[Rule]", "\"\<Bd\>\""}]}], "]"}]}], "]"}], "[", 
+           RowBox[{"[", 
+            RowBox[{"1", ",", "1"}], "]"}], "]"}], "-", "1"}], "]"}]}], 
+       "]"}]}], "]"}], ";"}]}], "\[IndentingNewLine]", 
+  "]"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{"Export", "[", 
    RowBox[{"\"\<MeioticDrive.csv\>\"", ",", 
@@ -530,26 +503,15 @@ Cell[BoxData[{
   " "}]}], "Input",
  CellChangeTimes->{{3.761055839293023*^9, 3.761055856755641*^9}, {
   3.761056072235002*^9, 3.761056073474113*^9}, {3.7610610730337543`*^9, 
-  3.7610610788172913`*^9}, {3.761063522210668*^9, 3.7610635256821632`*^9}}],
+  3.7610610788172913`*^9}, {3.761063522210668*^9, 3.7610635256821632`*^9}, {
+  3.7611717026428957`*^9, 3.761171717617652*^9}}],
 
 Cell[BoxData["\<\"MeioticDrive.csv\"\>"], "Output",
  CellChangeTimes->{
   3.7610558629260273`*^9, 3.7610560739580183`*^9, 3.761060973692513*^9, {
    3.761061062339587*^9, 3.761061079295031*^9}, 3.761061604989676*^9, {
-   3.761063510379839*^9, 3.761063529098836*^9}, 3.7610650807040243`*^9}]
-}, Open  ]],
-
-Cell[CellGroupData[{
-
-Cell[BoxData[
- RowBox[{"MeioticDriveList", "//", "Length"}]], "Input",
- CellChangeTimes->{{3.761056078996129*^9, 3.761056083209023*^9}}],
-
-Cell[BoxData["256"], "Output",
- CellChangeTimes->{
-  3.7610560835605288`*^9, 3.761060973773388*^9, 3.76106109063813*^9, 
-   3.761061605076694*^9, {3.761063510462871*^9, 3.761063529181445*^9}, 
-   3.761065080774301*^9}]
+   3.761063510379839*^9, 3.761063529098836*^9}, 3.7610650807040243`*^9, 
+   3.7611717185161333`*^9, 3.761178006132926*^9}]
 }, Open  ]]
 }, Closed]],
 
@@ -624,21 +586,22 @@ Cell[BoxData[{
              RowBox[{"[", "i", "]"}], "]"}], ",", 
             RowBox[{"ToString", "[", 
              RowBox[{
-              RowBox[{"Position", "[", 
-               RowBox[{"Genotypes", ",", 
-                RowBox[{"ReplacePart", "[", 
-                 RowBox[{
-                  RowBox[{"Genotypes", "[", 
-                   RowBox[{"[", "i", "]"}], "]"}], ",", 
+              RowBox[{
+               RowBox[{"Position", "[", 
+                RowBox[{"Genotypes", ",", 
+                 RowBox[{"ReplacePart", "[", 
                   RowBox[{
+                   RowBox[{"Genotypes", "[", 
+                    RowBox[{"[", "i", "]"}], "]"}], ",", 
                    RowBox[{
+                    RowBox[{
                     RowBox[{"Position", "[", 
                     RowBox[{
                     RowBox[{"Genotypes", "[", 
                     RowBox[{"[", "i", "]"}], "]"}], ",", "allele"}], "]"}], 
                     "[", 
                     RowBox[{"[", "j", "]"}], "]"}], "\[Rule]", 
-                   RowBox[{
+                    RowBox[{
                     RowBox[{"mutationbyallele", "[", 
                     RowBox[{"[", 
                     RowBox[{
@@ -652,10 +615,10 @@ Cell[BoxData[{
                     RowBox[{"1", ",", "1"}], "]"}], "]"}], "]"}], "]"}], "[", 
                     
                     RowBox[{"[", "2", "]"}], "]"}]}]}], "]"}]}], "]"}], "[", 
-              RowBox[{"[", 
-               RowBox[{"1", ",", "1"}], "]"}], "]"}], "]"}]}], "]"}]}], 
-         "\[IndentingNewLine]", "]"}]}], "\[IndentingNewLine]", "]"}], ";"}], 
-     "\[IndentingNewLine]", ",", 
+               RowBox[{"[", 
+                RowBox[{"1", ",", "1"}], "]"}], "]"}], "-", "1"}], "]"}]}], 
+           "]"}]}], "\[IndentingNewLine]", "]"}]}], "\[IndentingNewLine]", 
+       "]"}], ";"}], "\[IndentingNewLine]", ",", 
      RowBox[{"{", 
       RowBox[{"allele", ",", 
        RowBox[{"Flatten", "[", 
@@ -675,26 +638,29 @@ Cell[BoxData[{
    3.761060418955332*^9}, {3.76106045247129*^9, 3.761060452659021*^9}, {
    3.761060525091899*^9, 3.761060527698526*^9}, {3.761060840466139*^9, 
    3.761060858728807*^9}, {3.761060984074099*^9, 3.76106100792036*^9}, {
-   3.76106110374557*^9, 3.761061122344062*^9}, 3.761063508123087*^9}],
+   3.76106110374557*^9, 3.761061122344062*^9}, 3.761063508123087*^9, {
+   3.761171975930032*^9, 3.761171976016479*^9}}],
 
 Cell[BoxData["\<\"Mutation.csv\"\>"], "Output",
  CellChangeTimes->{
   3.761061008389783*^9, 3.761061123717222*^9, 3.761061605238051*^9, {
-   3.761063510595469*^9, 3.761063529317243*^9}, 3.761065080924555*^9}]
+   3.761063510595469*^9, 3.761063529317243*^9}, 3.761065080924555*^9, 
+   3.761171977044881*^9, 3.761178006265408*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
 
 Cell[BoxData[
  RowBox[{"MutationList", "//", "Length"}]], "Input",
- CellChangeTimes->{{3.761061185038067*^9, 3.7610611928150597`*^9}}],
+ CellChangeTimes->{{3.761061185038067*^9, 3.7610611928150597`*^9}, {
+  3.7611719800083647`*^9, 3.761171981119718*^9}}],
 
 Cell[BoxData["256"], "Output",
  CellChangeTimes->{
   3.7610611930922403`*^9, 3.761061605296606*^9, {3.761063510676366*^9, 
-   3.761063529373168*^9}, 3.761065080966758*^9}]
+   3.761063529373168*^9}, 3.761065080966758*^9, 3.761178006305253*^9}]
 }, Open  ]]
-}, Open  ]],
+}, Closed]],
 
 Cell[CellGroupData[{
 
@@ -723,8 +689,6 @@ Cell[BoxData[
  CellChangeTimes->{{3.7610715514424458`*^9, 3.761071577261765*^9}, {
   3.761072183020454*^9, 3.761072185234406*^9}, {3.761072440186636*^9, 
   3.7610724784425383`*^9}}],
-
-Cell[CellGroupData[{
 
 Cell[BoxData[{
  RowBox[{
@@ -759,231 +723,232 @@ Cell[BoxData[{
          RowBox[{"[", "i", "]"}], "]"}], "[", 
         RowBox[{"[", "2", "]"}], "]"}]}], "}"}]}], ";", "\[IndentingNewLine]", 
     RowBox[{"RecombinantGametes1", "=", 
-     RowBox[{
-      RowBox[{"{", 
-       RowBox[{
-        RowBox[{"{", 
-         RowBox[{
-          RowBox[{
-           RowBox[{
-            RowBox[{"Genotypes", "[", 
-             RowBox[{"[", "i", "]"}], "]"}], "[", 
-            RowBox[{"[", "1", "]"}], "]"}], "[", 
-           RowBox[{"[", "1", "]"}], "]"}], ",", 
-          RowBox[{
-           RowBox[{
-            RowBox[{"Genotypes", "[", 
-             RowBox[{"[", "i", "]"}], "]"}], "[", 
-            RowBox[{"[", "2", "]"}], "]"}], "[", 
-           RowBox[{"[", "2", "]"}], "]"}]}], "}"}], ",", 
-        RowBox[{"{", 
-         RowBox[{
-          RowBox[{
-           RowBox[{
-            RowBox[{"Genotypes", "[", 
-             RowBox[{"[", "i", "]"}], "]"}], "[", 
-            RowBox[{"[", "2", "]"}], "]"}], "[", 
-           RowBox[{"[", "1", "]"}], "]"}], ",", 
-          RowBox[{
-           RowBox[{
-            RowBox[{"Genotypes", "[", 
-             RowBox[{"[", "i", "]"}], "]"}], "[", 
-            RowBox[{"[", "1", "]"}], "]"}], "[", 
-           RowBox[{"[", "2", "]"}], "]"}]}], "}"}]}], "}"}], 
-      "\[IndentingNewLine]", 
-      RowBox[{"For", "[", 
-       RowBox[{
-        RowBox[{"j", "=", "1"}], ",", 
-        RowBox[{"j", "\[LessEqual]", 
-         RowBox[{"Length", "[", "Genotypes", "]"}]}], ",", 
-        RowBox[{"++", "j"}], ",", "\[IndentingNewLine]", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"{", 
         RowBox[{
-         RowBox[{"NonRecombinantGametes2", "=", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"Genotypes", "[", 
+            RowBox[{"[", "i", "]"}], "]"}], "[", 
+           RowBox[{"[", "1", "]"}], "]"}], "[", 
+          RowBox[{"[", "1", "]"}], "]"}], ",", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"Genotypes", "[", 
+            RowBox[{"[", "i", "]"}], "]"}], "[", 
+           RowBox[{"[", "2", "]"}], "]"}], "[", 
+          RowBox[{"[", "2", "]"}], "]"}]}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{
+           RowBox[{"Genotypes", "[", 
+            RowBox[{"[", "i", "]"}], "]"}], "[", 
+           RowBox[{"[", "2", "]"}], "]"}], "[", 
+          RowBox[{"[", "1", "]"}], "]"}], ",", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"Genotypes", "[", 
+            RowBox[{"[", "i", "]"}], "]"}], "[", 
+           RowBox[{"[", "1", "]"}], "]"}], "[", 
+          RowBox[{"[", "2", "]"}], "]"}]}], "}"}]}], "}"}]}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"For", "[", 
+     RowBox[{
+      RowBox[{"j", "=", "1"}], ",", 
+      RowBox[{"j", "\[LessEqual]", 
+       RowBox[{"Length", "[", "Genotypes", "]"}]}], ",", 
+      RowBox[{"++", "j"}], ",", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"NonRecombinantGametes2", "=", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"Genotypes", "[", 
+            RowBox[{"[", "j", "]"}], "]"}], "[", 
+           RowBox[{"[", "1", "]"}], "]"}], ",", 
+          RowBox[{
+           RowBox[{"Genotypes", "[", 
+            RowBox[{"[", "j", "]"}], "]"}], "[", 
+           RowBox[{"[", "2", "]"}], "]"}]}], "}"}]}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"RecombinantGametes2", "=", 
+        RowBox[{"{", 
+         RowBox[{
           RowBox[{"{", 
            RowBox[{
             RowBox[{
-             RowBox[{"Genotypes", "[", 
-              RowBox[{"[", "j", "]"}], "]"}], "[", 
+             RowBox[{
+              RowBox[{"Genotypes", "[", 
+               RowBox[{"[", "j", "]"}], "]"}], "[", 
+              RowBox[{"[", "1", "]"}], "]"}], "[", 
              RowBox[{"[", "1", "]"}], "]"}], ",", 
             RowBox[{
-             RowBox[{"Genotypes", "[", 
-              RowBox[{"[", "j", "]"}], "]"}], "[", 
-             RowBox[{"[", "2", "]"}], "]"}]}], "}"}]}], ";", 
-         "\[IndentingNewLine]", 
-         RowBox[{"RecombinantGametes2", "=", 
+             RowBox[{
+              RowBox[{"Genotypes", "[", 
+               RowBox[{"[", "j", "]"}], "]"}], "[", 
+              RowBox[{"[", "2", "]"}], "]"}], "[", 
+             RowBox[{"[", "2", "]"}], "]"}]}], "}"}], ",", 
           RowBox[{"{", 
            RowBox[{
-            RowBox[{"{", 
+            RowBox[{
              RowBox[{
-              RowBox[{
-               RowBox[{
-                RowBox[{"Genotypes", "[", 
-                 RowBox[{"[", "j", "]"}], "]"}], "[", 
-                RowBox[{"[", "1", "]"}], "]"}], "[", 
-               RowBox[{"[", "1", "]"}], "]"}], ",", 
-              RowBox[{
-               RowBox[{
-                RowBox[{"Genotypes", "[", 
-                 RowBox[{"[", "j", "]"}], "]"}], "[", 
-                RowBox[{"[", "2", "]"}], "]"}], "[", 
-               RowBox[{"[", "2", "]"}], "]"}]}], "}"}], ",", 
-            RowBox[{"{", 
+              RowBox[{"Genotypes", "[", 
+               RowBox[{"[", "j", "]"}], "]"}], "[", 
+              RowBox[{"[", "2", "]"}], "]"}], "[", 
+             RowBox[{"[", "1", "]"}], "]"}], ",", 
+            RowBox[{
              RowBox[{
-              RowBox[{
-               RowBox[{
-                RowBox[{"Genotypes", "[", 
-                 RowBox[{"[", "j", "]"}], "]"}], "[", 
-                RowBox[{"[", "2", "]"}], "]"}], "[", 
-               RowBox[{"[", "1", "]"}], "]"}], ",", 
-              RowBox[{
-               RowBox[{
-                RowBox[{"Genotypes", "[", 
-                 RowBox[{"[", "j", "]"}], "]"}], "[", 
-                RowBox[{"[", "1", "]"}], "]"}], "[", 
-               RowBox[{"[", "2", "]"}], "]"}]}], "}"}]}], "}"}]}], ";", 
-         "\[IndentingNewLine]", 
-         RowBox[{"(*", 
-          RowBox[{
-           RowBox[{"both", " ", "non"}], "-", "recombinant"}], "*)"}], 
-         "\[IndentingNewLine]", 
-         RowBox[{"For", "[", 
-          RowBox[{
-           RowBox[{"k", "=", "1"}], ",", 
-           RowBox[{"k", "\[LessEqual]", "2"}], ",", 
-           RowBox[{"++", "k"}], ",", "\[IndentingNewLine]", 
-           RowBox[{
-            RowBox[{"For", "[", 
-             RowBox[{
-              RowBox[{"h", "=", "1"}], ",", 
-              RowBox[{"h", "\[LessEqual]", "2"}], ",", 
-              RowBox[{"++", "h"}], ",", "\[IndentingNewLine]", 
-              RowBox[{"AppendTo", "[", 
-               RowBox[{
-                RowBox[{"RecombinationList", "[", 
-                 RowBox[{"[", 
-                  RowBox[{
-                   RowBox[{
-                    RowBox[{"(", 
-                    RowBox[{"j", "-", "1"}], ")"}], 
-                    RowBox[{"Length", "[", "Genotypes", "]"}]}], "+", "i"}], 
-                  "]"}], "]"}], ",", 
-                RowBox[{
-                 RowBox[{"Position", "[", 
-                  RowBox[{"Genotypes", ",", 
-                   RowBox[{"{", 
-                    RowBox[{
-                    RowBox[{"NonRecombinantGametes1", "[", 
-                    RowBox[{"[", "k", "]"}], "]"}], ",", 
-                    RowBox[{"NonRecombinantGametes2", "[", 
-                    RowBox[{"[", "h", "]"}], "]"}]}], "}"}]}], "]"}], "[", 
-                 RowBox[{"[", 
-                  RowBox[{"1", ",", "1"}], "]"}], "]"}]}], "]"}]}], 
-             "\[IndentingNewLine]", "]"}], ";"}]}], "\[IndentingNewLine]", 
-          "]"}], ";", "\[IndentingNewLine]", 
-         RowBox[{"For", "[", 
-          RowBox[{
-           RowBox[{"k", "=", "1"}], ",", 
-           RowBox[{"k", "\[LessEqual]", "2"}], ",", 
-           RowBox[{"++", "k"}], ",", "\[IndentingNewLine]", 
-           RowBox[{
-            RowBox[{"For", "[", 
-             RowBox[{
-              RowBox[{"h", "=", "1"}], ",", 
-              RowBox[{"h", "\[LessEqual]", "2"}], ",", 
-              RowBox[{"++", "h"}], ",", "\[IndentingNewLine]", 
-              RowBox[{"AppendTo", "[", 
-               RowBox[{
-                RowBox[{"RecombinationList", "[", 
-                 RowBox[{"[", 
-                  RowBox[{
-                   RowBox[{
-                    RowBox[{"(", 
-                    RowBox[{"j", "-", "1"}], ")"}], 
-                    RowBox[{"Length", "[", "Genotypes", "]"}]}], "+", "i"}], 
-                  "]"}], "]"}], ",", 
-                RowBox[{
-                 RowBox[{"Position", "[", 
-                  RowBox[{"Genotypes", ",", 
-                   RowBox[{"{", 
-                    RowBox[{
-                    RowBox[{"RecombinantGametes1", "[", 
-                    RowBox[{"[", "k", "]"}], "]"}], ",", 
-                    RowBox[{"NonRecombinantGametes2", "[", 
-                    RowBox[{"[", "h", "]"}], "]"}]}], "}"}]}], "]"}], "[", 
-                 RowBox[{"[", 
-                  RowBox[{"1", ",", "1"}], "]"}], "]"}]}], "]"}]}], 
-             "\[IndentingNewLine]", "]"}], ";"}]}], "\[IndentingNewLine]", 
-          "]"}], ";"}]}], "\[IndentingNewLine]", 
+              RowBox[{"Genotypes", "[", 
+               RowBox[{"[", "j", "]"}], "]"}], "[", 
+              RowBox[{"[", "1", "]"}], "]"}], "[", 
+             RowBox[{"[", "2", "]"}], "]"}]}], "}"}]}], "}"}]}], ";", 
+       "\[IndentingNewLine]", 
        RowBox[{"(*", 
         RowBox[{
-         RowBox[{"For", "[", 
-          RowBox[{
-           RowBox[{"k", "=", "1"}], ",", 
-           RowBox[{"k", "\[LessEqual]", "2"}], ",", 
-           RowBox[{"++", "k"}], ",", "\[IndentingNewLine]", 
+         RowBox[{"both", " ", "non"}], "-", "recombinant"}], "*)"}], 
+       "\[IndentingNewLine]", 
+       RowBox[{"For", "[", 
+        RowBox[{
+         RowBox[{"k", "=", "1"}], ",", 
+         RowBox[{"k", "\[LessEqual]", "2"}], ",", 
+         RowBox[{"++", "k"}], ",", "\[IndentingNewLine]", 
+         RowBox[{
+          RowBox[{"For", "[", 
            RowBox[{
-            RowBox[{"For", "[", 
+            RowBox[{"h", "=", "1"}], ",", 
+            RowBox[{"h", "\[LessEqual]", "2"}], ",", 
+            RowBox[{"++", "h"}], ",", "\[IndentingNewLine]", 
+            RowBox[{"AppendTo", "[", 
              RowBox[{
-              RowBox[{"h", "=", "1"}], ",", 
-              RowBox[{"h", "\[LessEqual]", "2"}], ",", 
-              RowBox[{"++", "h"}], ",", "\[IndentingNewLine]", 
-              RowBox[{"AppendTo", "[", 
-               RowBox[{
-                RowBox[{"RecombinationList", "[", 
-                 RowBox[{"[", 
-                  RowBox[{
-                   RowBox[{
-                    RowBox[{"(", 
-                    RowBox[{"j", "-", "1"}], ")"}], 
-                    RowBox[{"Length", "[", "Genotypes", "]"}]}], "+", "i"}], 
-                  "]"}], "]"}], ",", 
+              RowBox[{"RecombinationList", "[", 
+               RowBox[{"[", 
                 RowBox[{
-                 RowBox[{"Position", "[", 
-                  RowBox[{"Genotypes", ",", 
-                   RowBox[{"{", 
-                    RowBox[{
+                 RowBox[{
+                  RowBox[{"(", 
+                   RowBox[{"j", "-", "1"}], ")"}], 
+                  RowBox[{"Length", "[", "Genotypes", "]"}]}], "+", "i"}], 
+                "]"}], "]"}], ",", 
+              RowBox[{
+               RowBox[{
+                RowBox[{"Position", "[", 
+                 RowBox[{"Genotypes", ",", 
+                  RowBox[{"{", 
+                   RowBox[{
+                    RowBox[{"NonRecombinantGametes1", "[", 
+                    RowBox[{"[", "k", "]"}], "]"}], ",", 
+                    RowBox[{"NonRecombinantGametes2", "[", 
+                    RowBox[{"[", "h", "]"}], "]"}]}], "}"}]}], "]"}], "[", 
+                RowBox[{"[", 
+                 RowBox[{"1", ",", "1"}], "]"}], "]"}], "-", "1"}]}], "]"}]}],
+            "\[IndentingNewLine]", "]"}], ";"}]}], "\[IndentingNewLine]", 
+        "]"}], ";", "\[IndentingNewLine]", 
+       RowBox[{"For", "[", 
+        RowBox[{
+         RowBox[{"k", "=", "1"}], ",", 
+         RowBox[{"k", "\[LessEqual]", "2"}], ",", 
+         RowBox[{"++", "k"}], ",", "\[IndentingNewLine]", 
+         RowBox[{
+          RowBox[{"For", "[", 
+           RowBox[{
+            RowBox[{"h", "=", "1"}], ",", 
+            RowBox[{"h", "\[LessEqual]", "2"}], ",", 
+            RowBox[{"++", "h"}], ",", "\[IndentingNewLine]", 
+            RowBox[{"AppendTo", "[", 
+             RowBox[{
+              RowBox[{"RecombinationList", "[", 
+               RowBox[{"[", 
+                RowBox[{
+                 RowBox[{
+                  RowBox[{"(", 
+                   RowBox[{"j", "-", "1"}], ")"}], 
+                  RowBox[{"Length", "[", "Genotypes", "]"}]}], "+", "i"}], 
+                "]"}], "]"}], ",", 
+              RowBox[{
+               RowBox[{
+                RowBox[{"Position", "[", 
+                 RowBox[{"Genotypes", ",", 
+                  RowBox[{"{", 
+                   RowBox[{
+                    RowBox[{"NonRecombinantGametes1", "[", 
+                    RowBox[{"[", "k", "]"}], "]"}], ",", 
+                    RowBox[{"NonRecombinantGametes2", "[", 
+                    RowBox[{"[", "h", "]"}], "]"}]}], "}"}]}], "]"}], "[", 
+                RowBox[{"[", 
+                 RowBox[{"1", ",", "1"}], "]"}], "]"}], "-", "1"}]}], "]"}]}],
+            "\[IndentingNewLine]", "]"}], ";"}]}], "\[IndentingNewLine]", 
+        "]"}], ";", "\[IndentingNewLine]", 
+       RowBox[{"For", "[", 
+        RowBox[{
+         RowBox[{"k", "=", "1"}], ",", 
+         RowBox[{"k", "\[LessEqual]", "2"}], ",", 
+         RowBox[{"++", "k"}], ",", "\[IndentingNewLine]", 
+         RowBox[{
+          RowBox[{"For", "[", 
+           RowBox[{
+            RowBox[{"h", "=", "1"}], ",", 
+            RowBox[{"h", "\[LessEqual]", "2"}], ",", 
+            RowBox[{"++", "h"}], ",", "\[IndentingNewLine]", 
+            RowBox[{"AppendTo", "[", 
+             RowBox[{
+              RowBox[{"RecombinationList", "[", 
+               RowBox[{"[", 
+                RowBox[{
+                 RowBox[{
+                  RowBox[{"(", 
+                   RowBox[{"j", "-", "1"}], ")"}], 
+                  RowBox[{"Length", "[", "Genotypes", "]"}]}], "+", "i"}], 
+                "]"}], "]"}], ",", 
+              RowBox[{
+               RowBox[{
+                RowBox[{"Position", "[", 
+                 RowBox[{"Genotypes", ",", 
+                  RowBox[{"{", 
+                   RowBox[{
                     RowBox[{"NonRecombinantGametes1", "[", 
                     RowBox[{"[", "k", "]"}], "]"}], ",", 
                     RowBox[{"RecombinantGametes2", "[", 
                     RowBox[{"[", "h", "]"}], "]"}]}], "}"}]}], "]"}], "[", 
-                 RowBox[{"[", 
-                  RowBox[{"1", ",", "1"}], "]"}], "]"}]}], "]"}]}], 
-             "\[IndentingNewLine]", "]"}], ";"}]}], "\[IndentingNewLine]", 
-          "]"}], ";", "\[IndentingNewLine]", 
-         RowBox[{"For", "[", 
-          RowBox[{
-           RowBox[{"k", "=", "1"}], ",", 
-           RowBox[{"k", "\[LessEqual]", "2"}], ",", 
-           RowBox[{"++", "k"}], ",", "\[IndentingNewLine]", 
+                RowBox[{"[", 
+                 RowBox[{"1", ",", "1"}], "]"}], "]"}], "-", "1"}]}], "]"}]}],
+            "\[IndentingNewLine]", "]"}], ";"}]}], "\[IndentingNewLine]", 
+        "]"}], ";", "\[IndentingNewLine]", 
+       RowBox[{"For", "[", 
+        RowBox[{
+         RowBox[{"k", "=", "1"}], ",", 
+         RowBox[{"k", "\[LessEqual]", "2"}], ",", 
+         RowBox[{"++", "k"}], ",", "\[IndentingNewLine]", 
+         RowBox[{
+          RowBox[{"For", "[", 
            RowBox[{
-            RowBox[{"For", "[", 
+            RowBox[{"h", "=", "1"}], ",", 
+            RowBox[{"h", "\[LessEqual]", "2"}], ",", 
+            RowBox[{"++", "h"}], ",", "\[IndentingNewLine]", 
+            RowBox[{"AppendTo", "[", 
              RowBox[{
-              RowBox[{"h", "=", "1"}], ",", 
-              RowBox[{"h", "\[LessEqual]", "2"}], ",", 
-              RowBox[{"++", "h"}], ",", "\[IndentingNewLine]", 
-              RowBox[{"AppendTo", "[", 
-               RowBox[{
-                RowBox[{"RecombinationList", "[", 
-                 RowBox[{"[", 
-                  RowBox[{
-                   RowBox[{
-                    RowBox[{"(", 
-                    RowBox[{"j", "-", "1"}], ")"}], 
-                    RowBox[{"Length", "[", "Genotypes", "]"}]}], "+", "i"}], 
-                  "]"}], "]"}], ",", 
+              RowBox[{"RecombinationList", "[", 
+               RowBox[{"[", 
                 RowBox[{
-                 RowBox[{"Position", "[", 
-                  RowBox[{"Genotypes", ",", 
-                   RowBox[{"{", 
-                    RowBox[{
+                 RowBox[{
+                  RowBox[{"(", 
+                   RowBox[{"j", "-", "1"}], ")"}], 
+                  RowBox[{"Length", "[", "Genotypes", "]"}]}], "+", "i"}], 
+                "]"}], "]"}], ",", 
+              RowBox[{
+               RowBox[{
+                RowBox[{"Position", "[", 
+                 RowBox[{"Genotypes", ",", 
+                  RowBox[{"{", 
+                   RowBox[{
                     RowBox[{"RecombinantGametes1", "[", 
                     RowBox[{"[", "k", "]"}], "]"}], ",", 
                     RowBox[{"RecombinantGametes2", "[", 
                     RowBox[{"[", "h", "]"}], "]"}]}], "}"}]}], "]"}], "[", 
-                 RowBox[{"[", 
-                  RowBox[{"1", ",", "1"}], "]"}], "]"}]}], "]"}]}], 
-             "\[IndentingNewLine]", "]"}], ";"}]}], "\[IndentingNewLine]", 
-          "]"}], ";"}], "*)"}], "\[IndentingNewLine]", "]"}]}]}]}]}], 
+                RowBox[{"[", 
+                 RowBox[{"1", ",", "1"}], "]"}], "]"}], "-", "1"}]}], "]"}]}],
+            "\[IndentingNewLine]", "]"}], ";"}]}], "\[IndentingNewLine]", 
+        "]"}], ";"}]}], "\[IndentingNewLine]", "]"}]}]}], 
   "\[IndentingNewLine]", "]"}], "\[IndentingNewLine]"}], "Input",
  CellChangeTimes->{{3.7610699711115723`*^9, 3.761070044140895*^9}, {
    3.7610713321143427`*^9, 3.761071356983687*^9}, 3.761071440696775*^9, {
@@ -999,325 +964,36 @@ Cell[BoxData[{
    3.761073290318725*^9, 3.761073436412174*^9}, {3.761073514366231*^9, 
    3.761073546622336*^9}, {3.761073591309671*^9, 3.761073622676331*^9}, {
    3.7610736651243277`*^9, 3.761073680968904*^9}, {3.76107444660961*^9, 
-   3.7610744931304483`*^9}, {3.761074543374157*^9, 3.76107459295166*^9}}],
-
-Cell[BoxData[
- TemplateBox[{
-  "Part","partw",
-   "\"Part \\!\\(\\*RowBox[{\\\"1\\\"}]\\) of \\!\\(\\*RowBox[{\\\"{\\\", \
-\\\"}\\\"}]\\) does not exist.\"",2,420,79,29343012776796743073,"Local"},
-  "MessageTemplate"]], "Message", "MSG",
- CellChangeTimes->{3.761074593488422*^9}],
-
-Cell[BoxData[
- TemplateBox[{
-  "Part","partw",
-   "\"Part \\!\\(\\*RowBox[{\\\"1\\\"}]\\) of \\!\\(\\*RowBox[{\\\"{\\\", \
-\\\"}\\\"}]\\) does not exist.\"",2,420,80,29343012776796743073,"Local"},
-  "MessageTemplate"]], "Message", "MSG",
- CellChangeTimes->{3.761074593505292*^9}],
-
-Cell[BoxData[
- TemplateBox[{
-  "Part","partw",
-   "\"Part \\!\\(\\*RowBox[{\\\"1\\\"}]\\) of \\!\\(\\*RowBox[{\\\"{\\\", \
-\\\"}\\\"}]\\) does not exist.\"",2,420,81,29343012776796743073,"Local"},
-  "MessageTemplate"]], "Message", "MSG",
- CellChangeTimes->{3.761074593522142*^9}],
-
-Cell[BoxData[
- TemplateBox[{
-  "General","stop",
-   "\"Further output of \\!\\(\\*StyleBox[RowBox[{\\\"Part\\\", \\\"::\\\", \
-\\\"partw\\\"}], \\\"MessageName\\\"]\\) will be suppressed during this \
-calculation.\"",2,420,82,29343012776796743073,"Local"},
-  "MessageTemplate"]], "Message", "MSG",
- CellChangeTimes->{3.761074593539143*^9}],
-
-Cell[BoxData["$Aborted"], "Output",
- CellChangeTimes->{{3.761074540018364*^9, 3.761074551067514*^9}, {
-  3.761074582050226*^9, 3.761074595050137*^9}}]
-}, Open  ]],
+   3.7610744931304483`*^9}, {3.761074543374157*^9, 3.76107459295166*^9}, {
+   3.7610746900824842`*^9, 3.761074719397479*^9}, {3.761171772923501*^9, 
+   3.76117177986852*^9}}],
 
 Cell[CellGroupData[{
 
-Cell[BoxData["RecombinationList"], "Input",
- CellChangeTimes->{{3.76107307303097*^9, 3.761073105421013*^9}, {
-  3.7610731660383883`*^9, 3.7610731766685963`*^9}}],
-
 Cell[BoxData[
- InterpretationBox[
-  TagBox[
-   FrameBox[GridBox[{
-      {
-       ItemBox[
-        TagBox[
-         RowBox[{"{", 
-          RowBox[{
-           RowBox[{"{", 
-            RowBox[{"1", ",", "1", ",", "1", ",", "1"}], "}"}], ",", 
-           RowBox[{"{", 
-            RowBox[{"1", ",", "1", ",", "17", ",", "17"}], "}"}], ",", 
-           RowBox[{"{", 
-            RowBox[{"1", ",", "1", ",", "33", ",", "33"}], "}"}], ",", 
-           RowBox[{"{", 
-            RowBox[{"1", ",", "1", ",", "49", ",", "49"}], "}"}], ",", 
-           RowBox[{"{", 
-            RowBox[{"1", ",", "1", ",", "65", ",", "65"}], "}"}], ",", 
-           RowBox[{"{", 
-            RowBox[{"1", ",", "1", ",", "81", ",", "81"}], "}"}], ",", 
-           RowBox[{"{", 
-            RowBox[{"1", ",", "1", ",", "97", ",", "97"}], "}"}], ",", 
-           RowBox[{"{", 
-            RowBox[{"1", ",", "1", ",", "113", ",", "113"}], "}"}], ",", 
-           RowBox[{"{", 
-            RowBox[{"1", ",", "1", ",", "129", ",", "129"}], "}"}], ",", 
-           RowBox[{"{", 
-            RowBox[{"1", ",", "1", ",", "145", ",", "145"}], "}"}], ",", 
-           RowBox[{"{", 
-            RowBox[{"1", ",", "1", ",", "161", ",", "161"}], "}"}], ",", 
-           RowBox[{"{", 
-            RowBox[{"1", ",", "1", ",", "177", ",", "177"}], "}"}], ",", 
-           RowBox[{"{", 
-            RowBox[{"1", ",", "1", ",", "193", ",", "193"}], "}"}], ",", 
-           RowBox[{"{", 
-            RowBox[{"1", ",", "1", ",", "209", ",", "209"}], "}"}], ",", 
-           RowBox[{"{", 
-            RowBox[{"1", ",", "1", ",", "225", ",", "225"}], "}"}], ",", 
-           RowBox[{"{", 
-            RowBox[{"1", ",", "1", ",", "241", ",", "241"}], "}"}], ",", 
-           TemplateBox[{"65505"},
-            "OutputSizeLimit`Skeleton",
-            DisplayFunction->(FrameBox[
-              RowBox[{"\" \[CenterEllipsis]\"", #, "\"\[CenterEllipsis] \""}],
-               Background -> GrayLevel[0.75], 
-              BaseStyle -> {
-               "Deploy", FontColor -> GrayLevel[1], FontSize -> Smaller, 
-                ShowStringCharacters -> False}, BaselinePosition -> Baseline, 
-              ContentPadding -> False, FrameMargins -> {{1, 1}, {1, 2}}, 
-              FrameStyle -> None, RoundingRadius -> 7]& )], ",", 
-           RowBox[{"{", 
-            RowBox[{"256", ",", "256", ",", "32", ",", "32"}], "}"}], ",", 
-           RowBox[{"{", 
-            RowBox[{"256", ",", "256", ",", "48", ",", "48"}], "}"}], ",", 
-           RowBox[{"{", 
-            RowBox[{"256", ",", "256", ",", "64", ",", "64"}], "}"}], ",", 
-           RowBox[{"{", 
-            RowBox[{"256", ",", "256", ",", "80", ",", "80"}], "}"}], ",", 
-           RowBox[{"{", 
-            RowBox[{"256", ",", "256", ",", "96", ",", "96"}], "}"}], ",", 
-           RowBox[{"{", 
-            RowBox[{"256", ",", "256", ",", "112", ",", "112"}], "}"}], ",", 
-           RowBox[{"{", 
-            RowBox[{"256", ",", "256", ",", "128", ",", "128"}], "}"}], ",", 
-           RowBox[{"{", 
-            RowBox[{"256", ",", "256", ",", "144", ",", "144"}], "}"}], ",", 
-           RowBox[{"{", 
-            RowBox[{"256", ",", "256", ",", "160", ",", "160"}], "}"}], ",", 
-           RowBox[{"{", 
-            RowBox[{"256", ",", "256", ",", "176", ",", "176"}], "}"}], ",", 
-           RowBox[{"{", 
-            RowBox[{"256", ",", "256", ",", "192", ",", "192"}], "}"}], ",", 
-           RowBox[{"{", 
-            RowBox[{"256", ",", "256", ",", "208", ",", "208"}], "}"}], ",", 
-           RowBox[{"{", 
-            RowBox[{"256", ",", "256", ",", "224", ",", "224"}], "}"}], ",", 
-           RowBox[{"{", 
-            RowBox[{"256", ",", "256", ",", "240", ",", "240"}], "}"}], ",", 
-           RowBox[{"{", 
-            RowBox[{"256", ",", "256", ",", "256", ",", "256"}], "}"}]}], 
-          "}"}],
-         Short[#, 5]& ],
-        BaseStyle->{Deployed -> False},
-        StripOnInput->False]},
-      {GridBox[{
-         {
-          TagBox[
-           TooltipBox[
-            StyleBox[
-             StyleBox[
-              DynamicBox[ToBoxes[
-                FEPrivate`FrontEndResource[
-                "FEStrings", "sizeBriefExplanation"], StandardForm],
-               ImageSizeCache->{65., {3., 9.}}],
-              StripOnInput->False,
-              DynamicUpdating->True], "SuggestionsBarCategory",
-             StripOnInput->False],
-            StyleBox[
-             DynamicBox[
-              ToBoxes[
-               FEPrivate`FrontEndResource["FEStrings", "sizeExplanation"], 
-               StandardForm]], DynamicUpdating -> True, StripOnInput -> 
-             False]],
-           Annotation[#, 
-            Style[
-             Dynamic[
-              FEPrivate`FrontEndResource["FEStrings", "sizeExplanation"]], 
-             DynamicUpdating -> True], "Tooltip"]& ], 
-          ButtonBox[
-           PaneSelectorBox[{False->
-            StyleBox[
-             StyleBox[
-              DynamicBox[ToBoxes[
-                FEPrivate`FrontEndResource["FEStrings", "sizeShowLess"], 
-                StandardForm],
-               ImageSizeCache->{52., {1., 9.}}],
-              StripOnInput->False,
-              DynamicUpdating->True], "SuggestionsBarControl",
-             StripOnInput->False], True->
-            StyleBox[
-             StyleBox[
-              DynamicBox[ToBoxes[
-                FEPrivate`FrontEndResource["FEStrings", "sizeShowLess"], 
-                StandardForm]],
-              StripOnInput->False,
-              DynamicUpdating->True], "SuggestionsBarControlActive",
-             StripOnInput->False]}, Dynamic[
-             CurrentValue["MouseOver"]],
-            Alignment->Center,
-            FrameMargins->0,
-            ImageSize->{Automatic, 25}],
-           Appearance->None,
-           
-           ButtonFunction:>OutputSizeLimit`ButtonFunction[
-            OutputSizeLimit`Defer, 396, 29343012776796743073, 5/2],
-           Enabled->True,
-           Evaluator->Automatic,
-           Method->"Queued"], 
-          ButtonBox[
-           PaneSelectorBox[{False->
-            StyleBox[
-             StyleBox[
-              DynamicBox[ToBoxes[
-                FEPrivate`FrontEndResource["FEStrings", "sizeShowMore"], 
-                StandardForm],
-               ImageSizeCache->{62., {1., 9.}}],
-              StripOnInput->False,
-              DynamicUpdating->True], "SuggestionsBarControl",
-             StripOnInput->False], True->
-            StyleBox[
-             StyleBox[
-              DynamicBox[ToBoxes[
-                FEPrivate`FrontEndResource["FEStrings", "sizeShowMore"], 
-                StandardForm]],
-              StripOnInput->False,
-              DynamicUpdating->True], "SuggestionsBarControlActive",
-             StripOnInput->False]}, Dynamic[
-             CurrentValue["MouseOver"]],
-            Alignment->Center,
-            FrameMargins->0,
-            ImageSize->{Automatic, 25}],
-           Appearance->None,
-           
-           ButtonFunction:>OutputSizeLimit`ButtonFunction[
-            OutputSizeLimit`Defer, 396, 29343012776796743073, 5 2],
-           Enabled->True,
-           Evaluator->Automatic,
-           Method->"Queued"], 
-          ButtonBox[
-           PaneSelectorBox[{False->
-            StyleBox[
-             StyleBox[
-              DynamicBox[ToBoxes[
-                FEPrivate`FrontEndResource["FEStrings", "sizeShowAll"], 
-                StandardForm],
-               ImageSizeCache->{44., {1., 9.}}],
-              StripOnInput->False,
-              DynamicUpdating->True], "SuggestionsBarControl",
-             StripOnInput->False], True->
-            StyleBox[
-             StyleBox[
-              DynamicBox[ToBoxes[
-                FEPrivate`FrontEndResource["FEStrings", "sizeShowAll"], 
-                StandardForm]],
-              StripOnInput->False,
-              DynamicUpdating->True], "SuggestionsBarControlActive",
-             StripOnInput->False]}, Dynamic[
-             CurrentValue["MouseOver"]],
-            Alignment->Center,
-            FrameMargins->0,
-            ImageSize->{Automatic, 25}],
-           Appearance->None,
-           
-           ButtonFunction:>OutputSizeLimit`ButtonFunction[
-            OutputSizeLimit`Defer, 396, 29343012776796743073, Infinity],
-           Enabled->True,
-           Evaluator->Automatic,
-           Method->"Queued"], 
-          ButtonBox[
-           PaneSelectorBox[{False->
-            StyleBox[
-             StyleBox[
-              DynamicBox[ToBoxes[
-                FEPrivate`FrontEndResource["FEStrings", "sizeChangeLimit"], 
-                StandardForm],
-               ImageSizeCache->{78., {1., 9.}}],
-              StripOnInput->False,
-              DynamicUpdating->True], "SuggestionsBarControl",
-             StripOnInput->False], True->
-            StyleBox[
-             StyleBox[
-              DynamicBox[ToBoxes[
-                FEPrivate`FrontEndResource["FEStrings", "sizeChangeLimit"], 
-                StandardForm]],
-              StripOnInput->False,
-              DynamicUpdating->True], "SuggestionsBarControlActive",
-             StripOnInput->False]}, Dynamic[
-             CurrentValue["MouseOver"]],
-            Alignment->Center,
-            FrameMargins->0,
-            ImageSize->{Automatic, 25}],
-           Appearance->None,
-           ButtonFunction:>FrontEndExecute[{
-              FrontEnd`SetOptions[
-              FrontEnd`$FrontEnd, 
-               FrontEnd`PreferencesSettings -> {"Page" -> "Evaluation"}], 
-              FrontEnd`FrontEndToken["PreferencesDialog"]}],
-           Evaluator->None,
-           Method->"Preemptive"]}
-        },
-        AutoDelete->False,
-        FrameStyle->GrayLevel[0.85],
-        GridBoxDividers->{"Columns" -> {False, {True}}},
-        GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}},
-        GridBoxSpacings->{"Columns" -> {{2}}}]}
-     },
-     DefaultBaseStyle->"Column",
-     GridBoxAlignment->{
-      "Columns" -> {{Left}}, "ColumnsIndexed" -> {}, "Rows" -> {{Baseline}}, 
-       "RowsIndexed" -> {}},
-     GridBoxDividers->{
-      "Columns" -> {{False}}, "ColumnsIndexed" -> {}, "Rows" -> {{False}}, 
-       "RowsIndexed" -> {}},
-     GridBoxItemSize->{
-      "Columns" -> {{Automatic}}, "ColumnsIndexed" -> {}, "Rows" -> {{1.}}, 
-       "RowsIndexed" -> {}},
-     GridBoxSpacings->{"Columns" -> {
-         Offset[0.27999999999999997`], {
-          Offset[0.5599999999999999]}, 
-         Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
-         Offset[0.2], 
-         Offset[1.2], {
-          Offset[0.4]}, 
-         Offset[0.2]}, "RowsIndexed" -> {}}],
-    Background->RGBColor[0.9657, 0.9753, 0.9802],
-    FrameMargins->{{12, 12}, {0, 15}},
-    FrameStyle->GrayLevel[0.85],
-    RoundingRadius->5,
-    StripOnInput->False],
-   Deploy,
-   DefaultBaseStyle->"Deploy"],
-  Out[396]]], "Output",
+ RowBox[{
+  RowBox[{"Export", "[", 
+   RowBox[{
+   "\"\<Recombination.csv\>\"", ",", "RecombinationList", ",", 
+    "\"\<CSV\>\""}], "]"}], " "}]], "Input",
+ CellChangeTimes->{{3.76107307303097*^9, 3.761073105421013*^9}, {
+  3.7610731660383883`*^9, 3.7610731766685963`*^9}, {3.761074846959669*^9, 
+  3.761074858325593*^9}}],
+
+Cell[BoxData["\<\"Recombination.csv\"\>"], "Output",
  CellChangeTimes->{{3.761073077205476*^9, 3.76107310630649*^9}, {
    3.7610731621724377`*^9, 3.76107317732619*^9}, 3.7610735583666773`*^9, 
-   3.761073652442734*^9}]
+   3.761073652442734*^9, 3.761074827728992*^9, 3.761074871199667*^9, 
+   3.761171905783585*^9, 3.76117811554173*^9}]
 }, Open  ]]
-}, Open  ]]
+}, Closed]]
 }, Open  ]]
 },
-WindowSize->{1536, 781},
-WindowMargins->{{-8, Automatic}, {Automatic, -8}},
-FrontEndVersion->"11.0 for Microsoft Windows (64-bit) (September 21, 2016)",
+WindowSize->{1349, 1472},
+WindowMargins->{{Automatic, 81}, {Automatic, 56}},
+Magnification:>1.5 Inherited,
+FrontEndVersion->"11.0 for Mac OS X x86 (32-bit, 64-bit Kernel) (July 28, \
+2016)",
 StyleDefinitions->"Default.nb"
 ]
 (* End of Notebook Content *)
@@ -1332,95 +1008,80 @@ CellTagsIndex->{}
 (*NotebookFileOutline
 Notebook[{
 Cell[CellGroupData[{
-Cell[580, 22, 115, 1, 90, "Title"],
+Cell[580, 22, 115, 1, 137, "Title"],
 Cell[CellGroupData[{
-Cell[720, 27, 198, 4, 30, "Input"],
-Cell[921, 33, 426, 6, 30, "Output"]
+Cell[720, 27, 246, 4, 48, "Input"],
+Cell[969, 33, 462, 7, 48, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[1384, 44, 778, 23, 88, "Input"],
-Cell[2165, 69, 1351, 35, 30, "Output"]
+Cell[1468, 45, 99, 1, 48, "Input"],
+Cell[1570, 48, 1327, 35, 80, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[3553, 109, 133, 2, 30, "Input"],
-Cell[3689, 113, 71, 1, 30, "Output"]
+Cell[2934, 88, 104, 1, 96, "Chapter"],
+Cell[CellGroupData[{
+Cell[3063, 93, 1067, 28, 142, "Input"],
+Cell[4133, 123, 336, 4, 48, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[3797, 119, 130, 2, 64, "Chapter"],
-Cell[CellGroupData[{
-Cell[3952, 125, 795, 24, 88, "Input"],
-Cell[4750, 151, 216, 3, 30, "Output"]
-}, Open  ]],
-Cell[CellGroupData[{
-Cell[5003, 159, 134, 2, 30, "Input"],
-Cell[5140, 163, 123, 2, 30, "Output"]
-}, Open  ]]
-}, Open  ]],
-Cell[CellGroupData[{
-Cell[5312, 171, 100, 1, 64, "Chapter"],
-Cell[CellGroupData[{
-Cell[5437, 176, 1966, 57, 126, "Input"],
-Cell[7406, 235, 148, 2, 30, "Output"]
-}, Open  ]]
-}, Open  ]],
-Cell[CellGroupData[{
-Cell[7603, 243, 142, 2, 64, "Chapter"],
-Cell[CellGroupData[{
-Cell[7770, 249, 2398, 61, 202, "Input"],
-Cell[10171, 312, 330, 4, 30, "Output"],
-Cell[10504, 318, 312, 4, 30, "Output"]
-}, Open  ]]
-}, Open  ]],
-Cell[CellGroupData[{
-Cell[10865, 328, 143, 2, 64, "Chapter"],
-Cell[CellGroupData[{
-Cell[11033, 334, 2330, 68, 351, "Input"],
-Cell[13366, 404, 454, 6, 70, "Output"]
-}, Open  ]],
-Cell[CellGroupData[{
-Cell[13857, 415, 125, 2, 48, "Input"],
-Cell[13985, 419, 194, 3, 70, "Output"]
+Cell[4506, 132, 134, 2, 48, "Input"],
+Cell[4643, 136, 96, 1, 48, "Output"]
 }, Open  ]]
 }, Closed]],
 Cell[CellGroupData[{
-Cell[14228, 428, 128, 2, 53, "Chapter"],
+Cell[4788, 143, 96, 1, 78, "Chapter"],
 Cell[CellGroupData[{
-Cell[14381, 434, 3689, 98, 297, "Input"],
-Cell[18073, 534, 290, 4, 48, "Output"]
-}, Open  ]],
-Cell[CellGroupData[{
-Cell[18400, 543, 136, 2, 48, "Input"],
-Cell[18539, 547, 218, 4, 48, "Output"]
+Cell[4909, 148, 1754, 53, 142, "Input"],
+Cell[6666, 203, 120, 1, 70, "Output"]
 }, Open  ]]
 }, Closed]],
 Cell[CellGroupData[{
-Cell[18806, 557, 94, 1, 53, "Chapter"],
-Cell[18903, 560, 226, 5, 30, "Input"],
+Cell[6835, 210, 142, 2, 78, "Chapter"],
 Cell[CellGroupData[{
-Cell[19154, 569, 4342, 108, 259, "Input"],
-Cell[23499, 679, 208, 3, 30, "Output"]
+Cell[7002, 216, 2398, 61, 328, "Input"],
+Cell[9403, 279, 358, 5, 70, "Output"],
+Cell[9764, 286, 340, 5, 70, "Output"]
+}, Open  ]]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[10153, 297, 143, 2, 78, "Chapter"],
+Cell[CellGroupData[{
+Cell[10321, 303, 2330, 68, 351, "Input"],
+Cell[12654, 373, 478, 6, 70, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[23744, 687, 134, 2, 30, "Input"],
-Cell[23881, 691, 171, 3, 30, "Output"]
+Cell[13169, 384, 125, 2, 48, "Input"],
+Cell[13297, 388, 222, 4, 70, "Output"]
 }, Open  ]]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[13568, 398, 128, 2, 78, "Chapter"],
+Cell[CellGroupData[{
+Cell[13721, 404, 3839, 102, 297, "Input"],
+Cell[17563, 508, 340, 5, 70, "Output"]
+}, Open  ]]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[17952, 519, 94, 1, 78, "Chapter"],
+Cell[18049, 522, 226, 5, 48, "Input"],
+Cell[CellGroupData[{
+Cell[18300, 531, 4442, 110, 545, "Input"],
+Cell[22745, 643, 256, 4, 70, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[24101, 700, 98, 1, 64, "Chapter"],
-Cell[24202, 703, 812, 21, 50, "Input"],
-Cell[CellGroupData[{
-Cell[25039, 728, 11544, 273, 620, "Input"],
-Cell[36586, 1003, 279, 6, 23, "Message"],
-Cell[36868, 1011, 279, 6, 23, "Message"],
-Cell[37150, 1019, 279, 6, 23, "Message"],
-Cell[37432, 1027, 339, 7, 21, "Message"],
-Cell[37774, 1036, 150, 2, 30, "Output"]
-}, Open  ]],
-Cell[CellGroupData[{
-Cell[37961, 1043, 161, 2, 30, "Input"],
-Cell[38125, 1047, 10963, 265, 140, "Output"]
+Cell[23038, 652, 185, 3, 48, "Input"],
+Cell[23226, 657, 193, 3, 70, "Output"]
 }, Open  ]]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[23468, 666, 98, 1, 78, "Chapter"],
+Cell[23569, 669, 812, 21, 111, "Input"],
+Cell[24384, 692, 11378, 276, 1196, "Input"],
+Cell[CellGroupData[{
+Cell[35787, 972, 337, 8, 48, "Input"],
+Cell[36127, 982, 309, 4, 48, "Output"]
 }, Open  ]]
+}, Closed]]
 }, Open  ]]
 }
 ]

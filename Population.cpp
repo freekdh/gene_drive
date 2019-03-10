@@ -1,5 +1,7 @@
 #include "Population.h"
 
+const int totaloffspring = 1000;
+
 Population::Population(std::vector<int> &initIndividuals){
     for(int i = 0; i < initIndividuals.size(); ++i){
         for(int j = 0; j < initIndividuals[i]; ++j){
@@ -34,7 +36,6 @@ void Population::selection(std::vector<double> &fitnesslist){
 void Population::reproduce(std::vector<std::vector<int> > &recombinationlist){
     offspring.clear();
     const int totalparents = parents.size();
-    const int totaloffspring = 100;
     for(int i = 0; i < totaloffspring; ++i){
         offspring.push_back(new Individual(parents[rnd::integer(totalparents)],parents[rnd::integer(totalparents)], recombinationlist));
     }
