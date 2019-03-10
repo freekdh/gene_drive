@@ -92,3 +92,18 @@ std::vector<int> get_initalindividuals(const std::string &name){
     }
     return out;
 }
+
+std::vector<std::vector<int> > get_typetogametes(const std::string &name){
+    std::vector<std::vector<std::string> > data = parseCSV(name);
+    const int nrows = data.size();
+    std::vector<std::vector<int> > out(nrows);
+    for(int i = 0; i < nrows; ++i){
+        const int ncols = data[i].size();
+        std::vector<int> temp(ncols);
+        for(int j = 0; j < ncols; ++j){
+            temp[j] = std::stoi(data[i][j]);
+        }
+        out[i]=temp;
+    }
+    return out;
+}

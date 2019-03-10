@@ -7,19 +7,20 @@ rnd::discrete_distribution chooserecombinant(16);
 Individual::Individual(const int&genotype){type = genotype; }
 
 Individual::Individual(Individual* parent1, Individual* parent2, std::vector<std::vector<int> > &Recombination){
-     const int index = (parent1->type - 1)*ngenotypes + parent2->type;
-     type = Recombination[index][chooserecombinant.sample()]; // assuming recombinationrate = 0.5 -> Make a discrete distribtuion based on r.
+     const int index = (parent1->type)*ngenotypes + parent2->type;
+     type = Recombination[index][chooserecombinant.sample()]-1; // assuming recombinationrate = 0.5 -> Make a discrete distribtuion based on r.
+
 }
 
 void Individual::mutate(std::vector<std::vector<int > > &mutationlist, const double &m){
     for(int i = 0; i < mutationlist[type].size(); ++i){
-        type = rnd::uniform() <= m ? mutationlist[type][i] : type;
+        type = rnd::uniform() <= m ? mutationlist[type][i]-1 : type;
     }
 }
 
 void Individual::drive(std::vector<std::vector<int > > &drivelist, const double &d){
     for(int i = 0; i < drivelist[type].size(); ++i){
-        type = rnd::uniform() <= d ? drivelist[type][i] : type;
+        type = rnd::uniform() <= d ? drivelist[type][i]-1 : type;
     }
 }
 

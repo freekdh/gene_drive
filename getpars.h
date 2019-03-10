@@ -17,4 +17,5 @@ std::vector<std::vector<int> > get_mutationpars(const std::string &name);
 std::vector<std::vector<int > > get_drivepars(const std::string &name);
 std::vector<int> get_initalindividuals(const std::string &name);
 std::vector<std::vector<int> > get_recombinationpars(const std::string &name);
+std::vector<std::vector<int> > get_typetogametes(const std::string &name);
 #endif

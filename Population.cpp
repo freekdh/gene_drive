@@ -33,9 +33,11 @@ void Population::reproduce(std::vector<std::vector<int> > &recombinationlist){
     parents.clear();
     const int totaloffspring = offspring.size();
     const int totalparents = 100;
+
     for(int i = 0; i < totalparents; ++i){
         parents.push_back(new Individual(offspring[rnd::integer(totaloffspring)],offspring[rnd::integer(totaloffspring)], recombinationlist));
     }
+
     for(it = offspring.begin(); it < offspring.end(); ++it){
         delete *it;
     }
@@ -49,4 +51,13 @@ double Population::calculate_avgfitness(std::vector<double> fitnesslist){
         avg_fitness += fitnesslist[(*it)->return_type()];
     }
     return avg_fitness/(double)parents.size();
+}
+
+std::vector<int> Population::get_gametes(std::vector<std::vector<int> > &TypeToGametes){
+    std::vector<int> GameteCount(16,0);
+    for(it = parents.begin(); it < parents.end(); ++it){
+        ++GameteCount[TypeToGametes[(*it)->return_type()][0]];
+        ++GameteCount[TypeToGametes[(*it)->return_type()][1]];
+    }
+    return GameteCount;
 }
