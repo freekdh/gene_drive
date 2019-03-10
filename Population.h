@@ -13,7 +13,7 @@ class Population{
     void selection(std::vector<double> &fitnesslist);
     void reproduce(std::vector<std::vector<int> > &recombinationlist);
 
-    std::vector<int> get_gametes(std::vector<std::vector<int> > &TypeToGametes);
+    std::vector<int> get_gametes(std::vector<std::vector<int> > &TypeToGametes, std::vector<int> &GameteCount);
     private:
     std::vector<Individual*>::iterator it;
     std::vector<Individual*> parents;

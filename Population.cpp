@@ -27,20 +27,22 @@ void Population::selection(std::vector<double> &fitnesslist){
         rnd::uniform() <= fitnesslist[(*it)->return_type()] ? offspring.push_back(*it) : delete *it;
     }
     parents.clear();
+    parents = offspring;
+    offspring.clear();
 }
 
 void Population::reproduce(std::vector<std::vector<int> > &recombinationlist){
-    parents.clear();
-    const int totaloffspring = offspring.size();
-    const int totalparents = 100;
-
-    for(int i = 0; i < totalparents; ++i){
-        parents.push_back(new Individual(offspring[rnd::integer(totaloffspring)],offspring[rnd::integer(totaloffspring)], recombinationlist));
+    offspring.clear();
+    const int totalparents = parents.size();
+    const int totaloffspring = 100;
+    for(int i = 0; i < totaloffspring; ++i){
+        offspring.push_back(new Individual(parents[rnd::integer(totalparents)],parents[rnd::integer(totalparents)], recombinationlist));
     }
 
-    for(it = offspring.begin(); it < offspring.end(); ++it){
+    for(it = parents.begin(); it < parents.end(); ++it){
         delete *it;
     }
+    parents = offspring;
     offspring.clear();
 }
 
@@ -53,8 +55,8 @@ double Population::calculate_avgfitness(std::vector<double> fitnesslist){
     return avg_fitness/(double)parents.size();
 }
 
-std::vector<int> Population::get_gametes(std::vector<std::vector<int> > &TypeToGametes){
-    std::vector<int> GameteCount(16,0);
+std::vector<int> Population::get_gametes(std::vector<std::vector<int> > &TypeToGametes, std::vector<int> &GameteCount){
+    GameteCount.resize(16,0);
     for(it = parents.begin(); it < parents.end(); ++it){
         ++GameteCount[TypeToGametes[(*it)->return_type()][0]];
         ++GameteCount[TypeToGametes[(*it)->return_type()][1]];
