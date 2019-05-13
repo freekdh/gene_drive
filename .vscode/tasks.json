@@ -6,7 +6,7 @@
         {
             "label": "testbuild",
             "type": "shell",
-            "command": "g++ -std=c++11 -g main.cpp random.cpp utils.cpp getpars.cpp Individual.cpp Population.cpp -o main.exe",
+            "command": "g++ -std=c++11 -g ./Sim2/main.cpp ./Sim2/random.cpp ./Sim2/utils.cpp ./Sim2/Individual.cpp ./Sim2/Population.cpp -o main.exe",
             "group": {
                 "kind": "build",
                 "isDefault": true
