@@ -6,7 +6,17 @@
         {
             "label": "testbuild",
             "type": "shell",
-            "command": "g++ -std=c++11 -g ./Sim2/main.cpp ./Sim2/random.cpp ./Sim2/utils.cpp ./Sim2/Individual.cpp ./Sim2/Population.cpp -o main.exe",
+            "command": "g++ -std=c++11 -g ./Sim3/main.cpp ./Sim3/random.cpp ./Sim3/utils.cpp ./Sim3/recomb.cpp -o main.exe",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "testbuild2",
+            "type": "shell",
+            "command": "g++ -std=c++11 -g ./Sim3/recomb1.cpp -o main.exe",
             "group": {
                 "kind": "build",
                 "isDefault": true

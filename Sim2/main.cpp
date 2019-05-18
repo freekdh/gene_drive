@@ -10,9 +10,10 @@
 #include "Individual.h"
 
 const int n_wild=1000;
-const int n_eud=10;
+const int n_eud=50;
 const int n_gen=100;
-const double avg_offspring = 1.1;
+const int n_rep = 1;
+const double avg_offspring = 1.01;
 
 std::vector<Individual*> initialize_pop(const int &n_wild, const int &n_eud);
 void selection(std::vector<Individual*> &);
@@ -26,16 +27,17 @@ int main(int argc, char *argv[]){
     rnd::set_seed();
     std::ofstream output_file("./Data/sim_results.csv");
     output_file.fill(',');
-
-    std::vector<Individual*> pop1 = initialize_pop(n_wild,n_eud);
     print_header(output_file);
-    print(pop1,output_file);
 
-    for(int gen = 0; gen <= n_gen; ++gen){
-        selection(pop1);
-        drive(pop1);
-        recombination(pop1);
-        print(pop1, output_file);
+    for(int rep = 0; rep < n_rep; ++rep){
+        std::vector<Individual*> pop1 = initialize_pop(n_wild,n_eud);
+        print(pop1,output_file);
+        for(int gen = 0; gen < n_gen; ++gen){
+            selection(pop1);
+            drive(pop1);
+            recombination(pop1);
+            print(pop1, output_file);
+        }
     }
     
     return 0;
@@ -49,6 +51,8 @@ std::vector<Individual*> initialize_pop(const int &n_wild, const int &n_eud){
     for(int i = n_wild; i < n_wild+n_eud; ++i){
         pop[i] = new Individual(1);
     }
+
+    return pop;
 }
 
 void selection(std::vector<Individual*> &pop){
@@ -74,13 +78,16 @@ void recombination(std::vector<Individual*> &pop){
     for(int i = 0; i < n_offspring; ++i){
         offspring[i] = new Individual(pop[rnd::integer(pop_size)],pop[rnd::integer(pop_size)]);
     }
+
+    pop=offspring;
 }
 
 void print(std::vector<Individual*> &pop, std::ofstream &output_file){
     const int pop_size = pop.size();
-    std::vector<int> count_types(16,0);
+    std::vector<int> count_types(8,0);
     for(int i = 0; i < pop_size; ++i){
-        ++count_types[pop[i]->return_type()];
+        ++count_types[pop[i]->return_type1()];
+        ++count_types[pop[i]->return_type2()];
     }
 
     for(int i = 0; i < count_types.size(); ++i){
@@ -90,8 +97,8 @@ void print(std::vector<Individual*> &pop, std::ofstream &output_file){
 }
 
 void print_header(std::ofstream &output_file){
-    for(int i = 0; i < 16; ++i){
-        output_file << "type%i" << output_file.fill();
+    for(int i = 0; i < 8; ++i){
+        output_file << "type" << i << output_file.fill();
     }
     output_file << '\n';
 }

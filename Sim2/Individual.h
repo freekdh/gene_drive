@@ -10,10 +10,12 @@ class Individual{
 
     bool selection();
     void drive();
-    int return_type();
+    int return_type1();
+    int return_type2();
 
     private:
-    int type;
+    bool drive1[3];
+    bool drive2[3];
 };
 
 #endif
