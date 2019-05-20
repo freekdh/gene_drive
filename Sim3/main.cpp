@@ -8,29 +8,32 @@
 #include <fstream>
 #include "recomb.h"
 
-const int n_wild=1000;
-const int n_drive=200;
-const int n_gen=20;
-const double avg_offspring = 1.1;
-const int max_pop_size = 2000;
 const int n_genotypes = 256;
-
 void print(std::vector<int> & , std::ofstream &);
 void print_header(std::ofstream &);
-
 std::vector<int> initialize_pop(const int &, const int &);
 rnd::discrete_distribution make_dist(const std::vector<int> &);
 const std::vector<double>  initialize_multiplicative_payload(const double &sd, const double &spl, const double &e);
-
 const std::vector<double> calculate_frequencies(const std::vector<int> &pop,const int &total, const double &d, const double &r);
 
 /* main */
 int main(int argc, char *argv[]){
+    const int n_wild = atoi(argv[1]);
+    const int n_drive = atoi(argv[2]);
+    const int max_pop_size = atoi(argv[3]);
+    const int n_gen = atoi(argv[4]);
+    const double avg_offspring =atof(argv[5]);
+    const double drive_rate = atof(argv[6]);
+    const double recomb_rate = atof(argv[7]);
+    const double selection_drive = atof(argv[8]);
+    const double selection_payload = atof(argv[9]);
+    const double selection_toxin = atof(argv[10]);
+
     rnd::set_seed();
     std::ofstream output_file("./Data/sim_results.csv");
     output_file.fill(',');
     print_header(output_file);
-    const std::vector<double> type_payload = initialize_multiplicative_payload(0.1,0.1,1.0);
+    const std::vector<double> type_payload = initialize_multiplicative_payload(selection_drive,selection_payload,selection_toxin);
 
     std::vector<int> parents = initialize_pop(n_wild, n_drive);
     print(parents,output_file);
@@ -50,10 +53,8 @@ int main(int argc, char *argv[]){
             --total;
         }
 
-        print(offspring_after_selection,output_file);
-
         std::vector<int> offspring_after_mating(n_genotypes,0);
-        std::vector<double> freq_after_mating = calculate_frequencies(offspring_after_selection,total,1.0,0.5);
+        std::vector<double> freq_after_mating = calculate_frequencies(offspring_after_selection,total,drive_rate,recomb_rate);
         rnd::discrete_distribution dist2(n_genotypes);
         for(int i = 0; i<n_genotypes;++i){
             dist2[i] = freq_after_mating[i];
@@ -161,122 +162,99 @@ rnd::discrete_distribution make_dist(const std::vector<int> &pop){
 
 const std::vector<double> initialize_multiplicative_payload(const double &sd, const double &spl, const double &e){
     const std::vector<double> payload{
-        1,(1 - e)*pow(1 - spl,0.25),(1 - e)*pow(1 - spl,0.25),sqrt(1 - spl),1 \
-        - sd,(1 - e)*(1 - sd)*pow(1 - spl,0.25),(1 - e)*(1 - sd)*pow(1 - \
-        spl,0.25),(1 - sd)*sqrt(1 - spl),1 - sd,(1 - e)*(1 - sd)*pow(1 - \
-        spl,0.25),(1 - e)*(1 - sd)*pow(1 - spl,0.25),(1 - sd)*sqrt(1 - \
-        spl),pow(1 - sd,2),(1 - e)*pow(1 - sd,2)*pow(1 - spl,0.25),(1 - \
-        e)*pow(1 - sd,2)*pow(1 - spl,0.25),pow(1 - sd,2)*sqrt(1 - spl),(1 - \
-        e)*pow(1 - spl,0.25),(1 - e)*sqrt(1 - spl),sqrt(1 - spl),pow(1 - \
-        spl,0.75),(1 - e)*(1 - sd)*pow(1 - spl,0.25),(1 - e)*(1 - sd)*sqrt(1 \
-        - spl),(1 - sd)*sqrt(1 - spl),(1 - sd)*pow(1 - spl,0.75),(1 - e)*(1 - \
-        sd)*pow(1 - spl,0.25),(1 - e)*(1 - sd)*sqrt(1 - spl),(1 - sd)*sqrt(1 \
-        - spl),(1 - sd)*pow(1 - spl,0.75),(1 - e)*pow(1 - sd,2)*pow(1 - \
-        spl,0.25),(1 - e)*pow(1 - sd,2)*sqrt(1 - spl),pow(1 - sd,2)*sqrt(1 - \
-        spl),pow(1 - sd,2)*pow(1 - spl,0.75),(1 - e)*pow(1 - spl,0.25),sqrt(1 \
-        - spl),(1 - e)*sqrt(1 - spl),pow(1 - spl,0.75),(1 - e)*(1 - sd)*pow(1 \
-        - spl,0.25),(1 - sd)*sqrt(1 - spl),(1 - e)*(1 - sd)*sqrt(1 - spl),(1 \
-        - sd)*pow(1 - spl,0.75),(1 - e)*(1 - sd)*pow(1 - spl,0.25),(1 - \
-        sd)*sqrt(1 - spl),(1 - e)*(1 - sd)*sqrt(1 - spl),(1 - sd)*pow(1 - \
-        spl,0.75),(1 - e)*pow(1 - sd,2)*pow(1 - spl,0.25),pow(1 - \
-        sd,2)*sqrt(1 - spl),(1 - e)*pow(1 - sd,2)*sqrt(1 - spl),pow(1 - \
-        sd,2)*pow(1 - spl,0.75),sqrt(1 - spl),pow(1 - spl,0.75),pow(1 - \
-        spl,0.75),1 - spl,(1 - sd)*sqrt(1 - spl),(1 - sd)*pow(1 - \
-        spl,0.75),(1 - sd)*pow(1 - spl,0.75),(1 - sd)*(1 - spl),(1 - \
-        sd)*sqrt(1 - spl),(1 - sd)*pow(1 - spl,0.75),(1 - sd)*pow(1 - \
-        spl,0.75),(1 - sd)*(1 - spl),pow(1 - sd,2)*sqrt(1 - spl),pow(1 - \
-        sd,2)*pow(1 - spl,0.75),pow(1 - sd,2)*pow(1 - spl,0.75),pow(1 - \
-        sd,2)*(1 - spl),1 - sd,(1 - e)*(1 - sd)*pow(1 - spl,0.25),(1 - e)*(1 \
-        - sd)*pow(1 - spl,0.25),(1 - sd)*sqrt(1 - spl),pow(1 - sd,2),(1 - \
-        e)*pow(1 - sd,2)*pow(1 - spl,0.25),(1 - e)*pow(1 - sd,2)*pow(1 - \
-        spl,0.25),pow(1 - sd,2)*sqrt(1 - spl),pow(1 - sd,2),(1 - e)*pow(1 - \
-        sd,2)*pow(1 - spl,0.25),(1 - e)*pow(1 - sd,2)*pow(1 - spl,0.25),pow(1 \
-        - sd,2)*sqrt(1 - spl),pow(1 - sd,3),(1 - e)*pow(1 - sd,3)*pow(1 - \
-        spl,0.25),(1 - e)*pow(1 - sd,3)*pow(1 - spl,0.25),pow(1 - \
-        sd,3)*sqrt(1 - spl),(1 - e)*(1 - sd)*pow(1 - spl,0.25),(1 - e)*(1 - \
-        sd)*sqrt(1 - spl),(1 - sd)*sqrt(1 - spl),(1 - sd)*pow(1 - \
-        spl,0.75),(1 - e)*pow(1 - sd,2)*pow(1 - spl,0.25),(1 - e)*pow(1 - \
-        sd,2)*sqrt(1 - spl),pow(1 - sd,2)*sqrt(1 - spl),pow(1 - sd,2)*pow(1 - \
-        spl,0.75),(1 - e)*pow(1 - sd,2)*pow(1 - spl,0.25),(1 - e)*pow(1 - \
-        sd,2)*sqrt(1 - spl),pow(1 - sd,2)*sqrt(1 - spl),pow(1 - sd,2)*pow(1 - \
-        spl,0.75),(1 - e)*pow(1 - sd,3)*pow(1 - spl,0.25),(1 - e)*pow(1 - \
-        sd,3)*sqrt(1 - spl),pow(1 - sd,3)*sqrt(1 - spl),pow(1 - sd,3)*pow(1 - \
-        spl,0.75),(1 - e)*(1 - sd)*pow(1 - spl,0.25),(1 - sd)*sqrt(1 - \
-        spl),(1 - e)*(1 - sd)*sqrt(1 - spl),(1 - sd)*pow(1 - spl,0.75),(1 - \
-        e)*pow(1 - sd,2)*pow(1 - spl,0.25),pow(1 - sd,2)*sqrt(1 - spl),(1 - \
-        e)*pow(1 - sd,2)*sqrt(1 - spl),pow(1 - sd,2)*pow(1 - spl,0.75),(1 - \
-        e)*pow(1 - sd,2)*pow(1 - spl,0.25),pow(1 - sd,2)*sqrt(1 - spl),(1 - \
-        e)*pow(1 - sd,2)*sqrt(1 - spl),pow(1 - sd,2)*pow(1 - spl,0.75),(1 - \
-        e)*pow(1 - sd,3)*pow(1 - spl,0.25),pow(1 - sd,3)*sqrt(1 - spl),(1 - \
-        e)*pow(1 - sd,3)*sqrt(1 - spl),pow(1 - sd,3)*pow(1 - spl,0.75),(1 - \
-        sd)*sqrt(1 - spl),(1 - sd)*pow(1 - spl,0.75),(1 - sd)*pow(1 - \
-        spl,0.75),(1 - sd)*(1 - spl),pow(1 - sd,2)*sqrt(1 - spl),pow(1 - \
-        sd,2)*pow(1 - spl,0.75),pow(1 - sd,2)*pow(1 - spl,0.75),pow(1 - \
-        sd,2)*(1 - spl),pow(1 - sd,2)*sqrt(1 - spl),pow(1 - sd,2)*pow(1 - \
-        spl,0.75),pow(1 - sd,2)*pow(1 - spl,0.75),pow(1 - sd,2)*(1 - \
-        spl),pow(1 - sd,3)*sqrt(1 - spl),pow(1 - sd,3)*pow(1 - \
-        spl,0.75),pow(1 - sd,3)*pow(1 - spl,0.75),pow(1 - sd,3)*(1 - spl),1 - \
-        sd,(1 - e)*(1 - sd)*pow(1 - spl,0.25),(1 - e)*(1 - sd)*pow(1 - \
-        spl,0.25),(1 - sd)*sqrt(1 - spl),pow(1 - sd,2),(1 - e)*pow(1 - \
-        sd,2)*pow(1 - spl,0.25),(1 - e)*pow(1 - sd,2)*pow(1 - spl,0.25),pow(1 \
-        - sd,2)*sqrt(1 - spl),pow(1 - sd,2),(1 - e)*pow(1 - sd,2)*pow(1 - \
-        spl,0.25),(1 - e)*pow(1 - sd,2)*pow(1 - spl,0.25),pow(1 - \
-        sd,2)*sqrt(1 - spl),pow(1 - sd,3),(1 - e)*pow(1 - sd,3)*pow(1 - \
-        spl,0.25),(1 - e)*pow(1 - sd,3)*pow(1 - spl,0.25),pow(1 - \
-        sd,3)*sqrt(1 - spl),(1 - e)*(1 - sd)*pow(1 - spl,0.25),(1 - e)*(1 - \
-        sd)*sqrt(1 - spl),(1 - sd)*sqrt(1 - spl),(1 - sd)*pow(1 - \
-        spl,0.75),(1 - e)*pow(1 - sd,2)*pow(1 - spl,0.25),(1 - e)*pow(1 - \
-        sd,2)*sqrt(1 - spl),pow(1 - sd,2)*sqrt(1 - spl),pow(1 - sd,2)*pow(1 - \
-        spl,0.75),(1 - e)*pow(1 - sd,2)*pow(1 - spl,0.25),(1 - e)*pow(1 - \
-        sd,2)*sqrt(1 - spl),pow(1 - sd,2)*sqrt(1 - spl),pow(1 - sd,2)*pow(1 - \
-        spl,0.75),(1 - e)*pow(1 - sd,3)*pow(1 - spl,0.25),(1 - e)*pow(1 - \
-        sd,3)*sqrt(1 - spl),pow(1 - sd,3)*sqrt(1 - spl),pow(1 - sd,3)*pow(1 - \
-        spl,0.75),(1 - e)*(1 - sd)*pow(1 - spl,0.25),(1 - sd)*sqrt(1 - \
-        spl),(1 - e)*(1 - sd)*sqrt(1 - spl),(1 - sd)*pow(1 - spl,0.75),(1 - \
-        e)*pow(1 - sd,2)*pow(1 - spl,0.25),pow(1 - sd,2)*sqrt(1 - spl),(1 - \
-        e)*pow(1 - sd,2)*sqrt(1 - spl),pow(1 - sd,2)*pow(1 - spl,0.75),(1 - \
-        e)*pow(1 - sd,2)*pow(1 - spl,0.25),pow(1 - sd,2)*sqrt(1 - spl),(1 - \
-        e)*pow(1 - sd,2)*sqrt(1 - spl),pow(1 - sd,2)*pow(1 - spl,0.75),(1 - \
-        e)*pow(1 - sd,3)*pow(1 - spl,0.25),pow(1 - sd,3)*sqrt(1 - spl),(1 - \
-        e)*pow(1 - sd,3)*sqrt(1 - spl),pow(1 - sd,3)*pow(1 - spl,0.75),(1 - \
-        sd)*sqrt(1 - spl),(1 - sd)*pow(1 - spl,0.75),(1 - sd)*pow(1 - \
-        spl,0.75),(1 - sd)*(1 - spl),pow(1 - sd,2)*sqrt(1 - spl),pow(1 - \
-        sd,2)*pow(1 - spl,0.75),pow(1 - sd,2)*pow(1 - spl,0.75),pow(1 - \
-        sd,2)*(1 - spl),pow(1 - sd,2)*sqrt(1 - spl),pow(1 - sd,2)*pow(1 - \
-        spl,0.75),pow(1 - sd,2)*pow(1 - spl,0.75),pow(1 - sd,2)*(1 - \
-        spl),pow(1 - sd,3)*sqrt(1 - spl),pow(1 - sd,3)*pow(1 - \
-        spl,0.75),pow(1 - sd,3)*pow(1 - spl,0.75),pow(1 - sd,3)*(1 - \
-        spl),pow(1 - sd,2),(1 - e)*pow(1 - sd,2)*pow(1 - spl,0.25),(1 - \
-        e)*pow(1 - sd,2)*pow(1 - spl,0.25),pow(1 - sd,2)*sqrt(1 - spl),pow(1 \
-        - sd,3),(1 - e)*pow(1 - sd,3)*pow(1 - spl,0.25),(1 - e)*pow(1 - \
-        sd,3)*pow(1 - spl,0.25),pow(1 - sd,3)*sqrt(1 - spl),pow(1 - sd,3),(1 \
-        - e)*pow(1 - sd,3)*pow(1 - spl,0.25),(1 - e)*pow(1 - sd,3)*pow(1 - \
-        spl,0.25),pow(1 - sd,3)*sqrt(1 - spl),pow(1 - sd,4),(1 - e)*pow(1 - \
-        sd,4)*pow(1 - spl,0.25),(1 - e)*pow(1 - sd,4)*pow(1 - spl,0.25),pow(1 \
-        - sd,4)*sqrt(1 - spl),(1 - e)*pow(1 - sd,2)*pow(1 - spl,0.25),(1 - \
-        e)*pow(1 - sd,2)*sqrt(1 - spl),pow(1 - sd,2)*sqrt(1 - spl),pow(1 - \
-        sd,2)*pow(1 - spl,0.75),(1 - e)*pow(1 - sd,3)*pow(1 - spl,0.25),(1 - \
-        e)*pow(1 - sd,3)*sqrt(1 - spl),pow(1 - sd,3)*sqrt(1 - spl),pow(1 - \
-        sd,3)*pow(1 - spl,0.75),(1 - e)*pow(1 - sd,3)*pow(1 - spl,0.25),(1 - \
-        e)*pow(1 - sd,3)*sqrt(1 - spl),pow(1 - sd,3)*sqrt(1 - spl),pow(1 - \
-        sd,3)*pow(1 - spl,0.75),(1 - e)*pow(1 - sd,4)*pow(1 - spl,0.25),(1 - \
-        e)*pow(1 - sd,4)*sqrt(1 - spl),pow(1 - sd,4)*sqrt(1 - spl),pow(1 - \
-        sd,4)*pow(1 - spl,0.75),(1 - e)*pow(1 - sd,2)*pow(1 - spl,0.25),pow(1 \
-        - sd,2)*sqrt(1 - spl),(1 - e)*pow(1 - sd,2)*sqrt(1 - spl),pow(1 - \
-        sd,2)*pow(1 - spl,0.75),(1 - e)*pow(1 - sd,3)*pow(1 - spl,0.25),pow(1 \
-        - sd,3)*sqrt(1 - spl),(1 - e)*pow(1 - sd,3)*sqrt(1 - spl),pow(1 - \
-        sd,3)*pow(1 - spl,0.75),(1 - e)*pow(1 - sd,3)*pow(1 - spl,0.25),pow(1 \
-        - sd,3)*sqrt(1 - spl),(1 - e)*pow(1 - sd,3)*sqrt(1 - spl),pow(1 - \
-        sd,3)*pow(1 - spl,0.75),(1 - e)*pow(1 - sd,4)*pow(1 - spl,0.25),pow(1 \
-        - sd,4)*sqrt(1 - spl),(1 - e)*pow(1 - sd,4)*sqrt(1 - spl),pow(1 - \
-        sd,4)*pow(1 - spl,0.75),pow(1 - sd,2)*sqrt(1 - spl),pow(1 - \
-        sd,2)*pow(1 - spl,0.75),pow(1 - sd,2)*pow(1 - spl,0.75),pow(1 - \
-        sd,2)*(1 - spl),pow(1 - sd,3)*sqrt(1 - spl),pow(1 - sd,3)*pow(1 - \
-        spl,0.75),pow(1 - sd,3)*pow(1 - spl,0.75),pow(1 - sd,3)*(1 - \
-        spl),pow(1 - sd,3)*sqrt(1 - spl),pow(1 - sd,3)*pow(1 - \
-        spl,0.75),pow(1 - sd,3)*pow(1 - spl,0.75),pow(1 - sd,3)*(1 - \
-        spl),pow(1 - sd,4)*sqrt(1 - spl),pow(1 - sd,4)*pow(1 - \
-        spl,0.75),pow(1 - sd,4)*pow(1 - spl,0.75),pow(1 - sd,4)*(1 - spl)
+                1,(1 - e)*(1 - spl),(1 - e)*(1 - spl),1 - spl,1 - sd,(1 - e)*(1 - \
+        sd)*(1 - spl),(1 - e)*(1 - sd)*(1 - spl),(1 - sd)*(1 - spl),1 - sd,(1 \
+        - e)*(1 - sd)*(1 - spl),(1 - e)*(1 - sd)*(1 - spl),(1 - sd)*(1 - \
+        spl),pow(1 - sd,2),(1 - e)*pow(1 - sd,2)*(1 - spl),(1 - e)*pow(1 - \
+        sd,2)*(1 - spl),pow(1 - sd,2)*(1 - spl),(1 - e)*(1 - spl),(1 - e)*(1 \
+        - spl),1 - spl,1 - spl,(1 - e)*(1 - sd)*(1 - spl),(1 - e)*(1 - sd)*(1 \
+        - spl),(1 - sd)*(1 - spl),(1 - sd)*(1 - spl),(1 - e)*(1 - sd)*(1 - \
+        spl),(1 - e)*(1 - sd)*(1 - spl),(1 - sd)*(1 - spl),(1 - sd)*(1 - \
+        spl),(1 - e)*pow(1 - sd,2)*(1 - spl),(1 - e)*pow(1 - sd,2)*(1 - \
+        spl),pow(1 - sd,2)*(1 - spl),pow(1 - sd,2)*(1 - spl),(1 - e)*(1 - \
+        spl),1 - spl,(1 - e)*(1 - spl),1 - spl,(1 - e)*(1 - sd)*(1 - spl),(1 \
+        - sd)*(1 - spl),(1 - e)*(1 - sd)*(1 - spl),(1 - sd)*(1 - spl),(1 - \
+        e)*(1 - sd)*(1 - spl),(1 - sd)*(1 - spl),(1 - e)*(1 - sd)*(1 - \
+        spl),(1 - sd)*(1 - spl),(1 - e)*pow(1 - sd,2)*(1 - spl),pow(1 - \
+        sd,2)*(1 - spl),(1 - e)*pow(1 - sd,2)*(1 - spl),pow(1 - sd,2)*(1 - \
+        spl),1 - spl,1 - spl,1 - spl,1 - spl,(1 - sd)*(1 - spl),(1 - sd)*(1 - \
+        spl),(1 - sd)*(1 - spl),(1 - sd)*(1 - spl),(1 - sd)*(1 - spl),(1 - \
+        sd)*(1 - spl),(1 - sd)*(1 - spl),(1 - sd)*(1 - spl),pow(1 - sd,2)*(1 \
+        - spl),pow(1 - sd,2)*(1 - spl),pow(1 - sd,2)*(1 - spl),pow(1 - \
+        sd,2)*(1 - spl),1 - sd,(1 - e)*(1 - sd)*(1 - spl),(1 - e)*(1 - sd)*(1 \
+        - spl),(1 - sd)*(1 - spl),pow(1 - sd,2),(1 - e)*pow(1 - sd,2)*(1 - \
+        spl),(1 - e)*pow(1 - sd,2)*(1 - spl),pow(1 - sd,2)*(1 - spl),pow(1 - \
+        sd,2),(1 - e)*pow(1 - sd,2)*(1 - spl),(1 - e)*pow(1 - sd,2)*(1 - \
+        spl),pow(1 - sd,2)*(1 - spl),pow(1 - sd,3),(1 - e)*pow(1 - sd,3)*(1 - \
+        spl),(1 - e)*pow(1 - sd,3)*(1 - spl),pow(1 - sd,3)*(1 - spl),(1 - \
+        e)*(1 - sd)*(1 - spl),(1 - e)*(1 - sd)*(1 - spl),(1 - sd)*(1 - \
+        spl),(1 - sd)*(1 - spl),(1 - e)*pow(1 - sd,2)*(1 - spl),(1 - e)*pow(1 \
+        - sd,2)*(1 - spl),pow(1 - sd,2)*(1 - spl),pow(1 - sd,2)*(1 - spl),(1 \
+        - e)*pow(1 - sd,2)*(1 - spl),(1 - e)*pow(1 - sd,2)*(1 - spl),pow(1 - \
+        sd,2)*(1 - spl),pow(1 - sd,2)*(1 - spl),(1 - e)*pow(1 - sd,3)*(1 - \
+        spl),(1 - e)*pow(1 - sd,3)*(1 - spl),pow(1 - sd,3)*(1 - spl),pow(1 - \
+        sd,3)*(1 - spl),(1 - e)*(1 - sd)*(1 - spl),(1 - sd)*(1 - spl),(1 - \
+        e)*(1 - sd)*(1 - spl),(1 - sd)*(1 - spl),(1 - e)*pow(1 - sd,2)*(1 - \
+        spl),pow(1 - sd,2)*(1 - spl),(1 - e)*pow(1 - sd,2)*(1 - spl),pow(1 - \
+        sd,2)*(1 - spl),(1 - e)*pow(1 - sd,2)*(1 - spl),pow(1 - sd,2)*(1 - \
+        spl),(1 - e)*pow(1 - sd,2)*(1 - spl),pow(1 - sd,2)*(1 - spl),(1 - \
+        e)*pow(1 - sd,3)*(1 - spl),pow(1 - sd,3)*(1 - spl),(1 - e)*pow(1 - \
+        sd,3)*(1 - spl),pow(1 - sd,3)*(1 - spl),(1 - sd)*(1 - spl),(1 - \
+        sd)*(1 - spl),(1 - sd)*(1 - spl),(1 - sd)*(1 - spl),pow(1 - sd,2)*(1 \
+        - spl),pow(1 - sd,2)*(1 - spl),pow(1 - sd,2)*(1 - spl),pow(1 - \
+        sd,2)*(1 - spl),pow(1 - sd,2)*(1 - spl),pow(1 - sd,2)*(1 - spl),pow(1 \
+        - sd,2)*(1 - spl),pow(1 - sd,2)*(1 - spl),pow(1 - sd,3)*(1 - \
+        spl),pow(1 - sd,3)*(1 - spl),pow(1 - sd,3)*(1 - spl),pow(1 - sd,3)*(1 \
+        - spl),1 - sd,(1 - e)*(1 - sd)*(1 - spl),(1 - e)*(1 - sd)*(1 - \
+        spl),(1 - sd)*(1 - spl),pow(1 - sd,2),(1 - e)*pow(1 - sd,2)*(1 - \
+        spl),(1 - e)*pow(1 - sd,2)*(1 - spl),pow(1 - sd,2)*(1 - spl),pow(1 - \
+        sd,2),(1 - e)*pow(1 - sd,2)*(1 - spl),(1 - e)*pow(1 - sd,2)*(1 - \
+        spl),pow(1 - sd,2)*(1 - spl),pow(1 - sd,3),(1 - e)*pow(1 - sd,3)*(1 - \
+        spl),(1 - e)*pow(1 - sd,3)*(1 - spl),pow(1 - sd,3)*(1 - spl),(1 - \
+        e)*(1 - sd)*(1 - spl),(1 - e)*(1 - sd)*(1 - spl),(1 - sd)*(1 - \
+        spl),(1 - sd)*(1 - spl),(1 - e)*pow(1 - sd,2)*(1 - spl),(1 - e)*pow(1 \
+        - sd,2)*(1 - spl),pow(1 - sd,2)*(1 - spl),pow(1 - sd,2)*(1 - spl),(1 \
+        - e)*pow(1 - sd,2)*(1 - spl),(1 - e)*pow(1 - sd,2)*(1 - spl),pow(1 - \
+        sd,2)*(1 - spl),pow(1 - sd,2)*(1 - spl),(1 - e)*pow(1 - sd,3)*(1 - \
+        spl),(1 - e)*pow(1 - sd,3)*(1 - spl),pow(1 - sd,3)*(1 - spl),pow(1 - \
+        sd,3)*(1 - spl),(1 - e)*(1 - sd)*(1 - spl),(1 - sd)*(1 - spl),(1 - \
+        e)*(1 - sd)*(1 - spl),(1 - sd)*(1 - spl),(1 - e)*pow(1 - sd,2)*(1 - \
+        spl),pow(1 - sd,2)*(1 - spl),(1 - e)*pow(1 - sd,2)*(1 - spl),pow(1 - \
+        sd,2)*(1 - spl),(1 - e)*pow(1 - sd,2)*(1 - spl),pow(1 - sd,2)*(1 - \
+        spl),(1 - e)*pow(1 - sd,2)*(1 - spl),pow(1 - sd,2)*(1 - spl),(1 - \
+        e)*pow(1 - sd,3)*(1 - spl),pow(1 - sd,3)*(1 - spl),(1 - e)*pow(1 - \
+        sd,3)*(1 - spl),pow(1 - sd,3)*(1 - spl),(1 - sd)*(1 - spl),(1 - \
+        sd)*(1 - spl),(1 - sd)*(1 - spl),(1 - sd)*(1 - spl),pow(1 - sd,2)*(1 \
+        - spl),pow(1 - sd,2)*(1 - spl),pow(1 - sd,2)*(1 - spl),pow(1 - \
+        sd,2)*(1 - spl),pow(1 - sd,2)*(1 - spl),pow(1 - sd,2)*(1 - spl),pow(1 \
+        - sd,2)*(1 - spl),pow(1 - sd,2)*(1 - spl),pow(1 - sd,3)*(1 - \
+        spl),pow(1 - sd,3)*(1 - spl),pow(1 - sd,3)*(1 - spl),pow(1 - sd,3)*(1 \
+        - spl),pow(1 - sd,2),(1 - e)*pow(1 - sd,2)*(1 - spl),(1 - e)*pow(1 - \
+        sd,2)*(1 - spl),pow(1 - sd,2)*(1 - spl),pow(1 - sd,3),(1 - e)*pow(1 - \
+        sd,3)*(1 - spl),(1 - e)*pow(1 - sd,3)*(1 - spl),pow(1 - sd,3)*(1 - \
+        spl),pow(1 - sd,3),(1 - e)*pow(1 - sd,3)*(1 - spl),(1 - e)*pow(1 - \
+        sd,3)*(1 - spl),pow(1 - sd,3)*(1 - spl),pow(1 - sd,4),(1 - e)*pow(1 - \
+        sd,4)*(1 - spl),(1 - e)*pow(1 - sd,4)*(1 - spl),pow(1 - sd,4)*(1 - \
+        spl),(1 - e)*pow(1 - sd,2)*(1 - spl),(1 - e)*pow(1 - sd,2)*(1 - \
+        spl),pow(1 - sd,2)*(1 - spl),pow(1 - sd,2)*(1 - spl),(1 - e)*pow(1 - \
+        sd,3)*(1 - spl),(1 - e)*pow(1 - sd,3)*(1 - spl),pow(1 - sd,3)*(1 - \
+        spl),pow(1 - sd,3)*(1 - spl),(1 - e)*pow(1 - sd,3)*(1 - spl),(1 - \
+        e)*pow(1 - sd,3)*(1 - spl),pow(1 - sd,3)*(1 - spl),pow(1 - sd,3)*(1 - \
+        spl),(1 - e)*pow(1 - sd,4)*(1 - spl),(1 - e)*pow(1 - sd,4)*(1 - \
+        spl),pow(1 - sd,4)*(1 - spl),pow(1 - sd,4)*(1 - spl),(1 - e)*pow(1 - \
+        sd,2)*(1 - spl),pow(1 - sd,2)*(1 - spl),(1 - e)*pow(1 - sd,2)*(1 - \
+        spl),pow(1 - sd,2)*(1 - spl),(1 - e)*pow(1 - sd,3)*(1 - spl),pow(1 - \
+        sd,3)*(1 - spl),(1 - e)*pow(1 - sd,3)*(1 - spl),pow(1 - sd,3)*(1 - \
+        spl),(1 - e)*pow(1 - sd,3)*(1 - spl),pow(1 - sd,3)*(1 - spl),(1 - \
+        e)*pow(1 - sd,3)*(1 - spl),pow(1 - sd,3)*(1 - spl),(1 - e)*pow(1 - \
+        sd,4)*(1 - spl),pow(1 - sd,4)*(1 - spl),(1 - e)*pow(1 - sd,4)*(1 - \
+        spl),pow(1 - sd,4)*(1 - spl),pow(1 - sd,2)*(1 - spl),pow(1 - sd,2)*(1 \
+        - spl),pow(1 - sd,2)*(1 - spl),pow(1 - sd,2)*(1 - spl),pow(1 - \
+        sd,3)*(1 - spl),pow(1 - sd,3)*(1 - spl),pow(1 - sd,3)*(1 - spl),pow(1 \
+        - sd,3)*(1 - spl),pow(1 - sd,3)*(1 - spl),pow(1 - sd,3)*(1 - \
+        spl),pow(1 - sd,3)*(1 - spl),pow(1 - sd,3)*(1 - spl),pow(1 - sd,4)*(1 \
+        - spl),pow(1 - sd,4)*(1 - spl),pow(1 - sd,4)*(1 - spl),pow(1 - \
+        sd,4)*(1 - spl)
     };
     return payload;
 }

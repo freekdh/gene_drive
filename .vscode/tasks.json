@@ -4,9 +4,9 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "testbuild",
+            "label": "Compile all",
             "type": "shell",
-            "command": "g++ -std=c++11 -g ./Sim3/main.cpp ./Sim3/random.cpp ./Sim3/utils.cpp ./Sim3/recomb.cpp -o main.exe",
+            "command": "g++ -c -Wall -std=c++11 -g ./Sim4/main.cpp ./Sim4/random.cpp ./Sim4/utils.cpp ./Sim4/recomb.cpp",
             "group": {
                 "kind": "build",
                 "isDefault": true
@@ -14,9 +14,29 @@
             "problemMatcher": []
         },
         {
-            "label": "testbuild2",
+            "label": "Compile main4",
             "type": "shell",
-            "command": "g++ -std=c++11 -g ./Sim3/recomb1.cpp -o main.exe",
+            "command": "g++ -c -Wall -std=c++11 -g ./Sim4/main.cpp",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Compile main3",
+            "type": "shell",
+            "command": "g++ -c -Wall -std=c++11 -g ./Sim3/main.cpp",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Link object file(s)",
+            "type": "shell",
+            "command": "g++ -std=c++11 -g ./main.o ./random.o ./utils.o ./recomb.o -o main.exe",
             "group": {
                 "kind": "build",
                 "isDefault": true
