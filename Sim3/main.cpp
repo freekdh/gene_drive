@@ -30,7 +30,7 @@ int main(int argc, char *argv[]){
     const double selection_toxin = atof(argv[10]);
 
     rnd::set_seed();
-    std::ofstream output_file("./Data/sim_results.csv");
+    std::ofstream output_file("./Data/sim_results_dyn.csv");
     output_file.fill(',');
     print_header(output_file);
     const std::vector<double> type_payload = initialize_multiplicative_payload(selection_drive,selection_payload,selection_toxin);

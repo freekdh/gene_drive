@@ -34,9 +34,19 @@
             "problemMatcher": []
         },
         {
-            "label": "Link object file(s)",
+            "label": "Compile main5",
             "type": "shell",
-            "command": "g++ -std=c++11 -g ./main.o ./random.o ./utils.o ./recomb.o -o main.exe",
+            "command": "g++ -c -Wall -std=c++11 -g ./Sim5/main.cpp",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Link object file(s) for main3",
+            "type": "shell",
+            "command": "g++ -std=c++11 -g ./main.o ./random.o ./utils.o ./recomb.o -o main3.exe",
             "group": {
                 "kind": "build",
                 "isDefault": true
