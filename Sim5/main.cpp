@@ -1,9 +1,12 @@
 /* Freek de Haas, UBC, freekdh@gmail.com */
+#include "WolframLibrary.h"
+
+EXTERN_C DLLEXPORT mint WolframLibrary_getVersion(){return WolframLibraryVersion;}
+EXTERN_C DLLEXPORT int WolframLibrary_initialize( WolframLibraryData libData) {return 0;}
+EXTERN_C DLLEXPORT void WolframLibrary_uninitialize( WolframLibraryData libData) {}
 
 #include <iostream>
 #include <vector>
-#include "random.h"
-#include "utils.h"
 #include <assert.h>
 #include <fstream>
 #include "recomb.h"
@@ -13,49 +16,37 @@ using namespace std::chrono;
 
 const int n_genotypes = 256;
 void print(std::vector<double> &pop, std::ofstream &output_file);
-std::vector<double> initialize_pop(const int &, const int &);
-rnd::discrete_distribution make_dist(const std::vector<int> &);
+std::vector<double> initialize_pop(const double &);
 const std::vector<double>  initialize_multiplicative_payload(const double &sd, const double &spl, const double &e);
 const std::vector<double> calculate_frequencies(const std::vector<double> &, const double &, const double &);
 bool is_extinct(const std::vector<int> &);
 void print_header(std::ofstream &output_file);
 
 /* main */
-int main(int argc, char *argv[]){
+EXTERN_C DLLEXPORT int IsFix(WolframLibraryData libData, mint Argc, MArgument *Args, MArgument Res){
     // auto start_main = high_resolution_clock::now(); 
 
-    const int n_wild = atoi(argv[1]);
-    const int n_drive = atoi(argv[2]);
+    const double p_drive = MArgument_getReal(Args[0]);
     //const int max_pop_size = atoi(argv[3]);
-    const int n_gen_max = atoi(argv[4]);
+    const int n_gen_max = 100000;
     //const double avg_offspring =atof(argv[5]);
-    const double drive_rate = atof(argv[6]);
-    const double recomb_rate = atof(argv[7]);
-    const double selection_drive = atof(argv[8]);
-    const double selection_payload = atof(argv[9]);
-    const double selection_toxin = atof(argv[10]);
+    const double drive_rate = 1.0;
+    const double recomb_rate = 0.5;
+    const double selection_drive = 0.1;
+    const double selection_payload = MArgument_getReal(Args[1]);
+    const double selection_toxin = 1.0;
     //const int n_rep = atoi(argv[11]);
 
-    rnd::set_seed();
-    std::ofstream output_file;
-    output_file.open ("./Data/sim_results_dyn.csv", std::ofstream::app);
-    if (!output_file.is_open()){
-        std::cout << "Cannot open output file" << std::endl;
-        exit(99);
-    }
-
-    output_file.fill(',');
     // auto start_fun1 = high_resolution_clock::now(); 
     const std::vector<double> type_payload = initialize_multiplicative_payload(selection_drive,selection_payload,selection_toxin);
     // auto stop_fun1 = high_resolution_clock::now(); 
     // auto duration_fun1 = duration_cast<microseconds>(stop_fun1 - start_fun1); 
     // std::cout << "initialize_multiplicative_payload: " << duration_fun1.count() << std::endl; 
 
-    std::vector<double> parents = initialize_pop(n_wild, n_drive);
+    std::vector<double> parents = initialize_pop(p_drive);
     int gen = 0;
     while(true)
     {
-
         double normalization = 0.0;
         for(int i = 0; i < n_genotypes; ++i){
             parents[i] = parents[i]*type_payload[i];
@@ -67,28 +58,25 @@ int main(int argc, char *argv[]){
         std::vector<double> freq_after_mating = calculate_frequencies(parents,drive_rate,recomb_rate);
         parents = freq_after_mating;
         ++gen;
-
         if(1.0-parents[51]<0.01){
-            output_file << n_drive << output_file.fill() << selection_payload << output_file.fill() << 0 << std::endl;
+            mint ans = 0;
+            MArgument_setInteger(Res,ans);
             break;
         }
 
         if(gen>20 && 1.0-parents[0] < 0.0001){
-            output_file << n_drive << output_file.fill() << selection_payload << output_file.fill() << 1 << std::endl;
+            mint ans = 1;
+            MArgument_setInteger(Res,ans);
             break;
         }
-
         if(gen>=n_gen_max){
-            output_file << n_drive << output_file.fill() << selection_payload << output_file.fill() << "W" << std::endl;
+            mint ans = 3;
+            MArgument_setInteger(Res,ans);
             break;
         }
     }
-    // collect data 
-    // auto stop_main = high_resolution_clock::now(); 
-    // auto duration_main = duration_cast<microseconds>(stop_main - start_main); 
-    // std::cout << "main: " << duration_main.count() << std::endl; 
 
-    return 0;
+    return LIBRARY_NO_ERROR; 
 }
 
 bool is_extinct(const std::vector<int> &pop){
@@ -168,19 +156,11 @@ const std::vector<double> calculate_frequencies(const std::vector<double> &F, co
     return F31; 
 }
 
-std::vector<double> initialize_pop(const int &n_wild, const int &n_drive){
+std::vector<double> initialize_pop(const double &p_drive){
     std::vector<double> pop(n_genotypes,0.0);
-    pop[0] = (double)n_wild/(double)(n_wild+n_drive);
-    pop[n_genotypes-1] = (double)n_drive/(double)(n_wild+n_drive);
+    pop[0] = (1.0-p_drive);
+    pop[n_genotypes-1] = p_drive;
     return pop;
-}
-
-rnd::discrete_distribution make_dist(const std::vector<int> &pop){
-    rnd::discrete_distribution dist(n_genotypes);
-    for(int i = 0; i < n_genotypes;++i){
-        dist[i] = pop[i];
-    }
-    return dist;
 }
 
 const std::vector<double> initialize_multiplicative_payload(const double &sd, const double &spl, const double &e){
